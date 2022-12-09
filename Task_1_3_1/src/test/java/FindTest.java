@@ -1,11 +1,13 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import java.io.IOException;
 import org.example.Find;
+import org.junit.jupiter.api.Test;
 
-import java.io.*;
 
-
+/**
+ * FindTest.
+ */
 
 public class FindTest {
 
@@ -27,7 +29,7 @@ public class FindTest {
     @Test
     void emptyTest() throws IOException {
         Find test = new Find();
-        assertEquals(test.find("1.txt", "qwerty"),-1);
+        assertEquals(test.find("1.txt", "qwerty"), -1);
     }
 
     /**
@@ -87,7 +89,8 @@ public class FindTest {
     @Test
     void large_textTest() throws IOException {
         Find test = new Find();
-        assertEquals(test.find("5.txt", "В четверть одиннадцатого, наконец, сели в кареты и поехали."), 25108);
+        String find = "В четверть одиннадцатого, наконец, сели в кареты и поехали.";
+        assertEquals(test.find("5.txt", find), 25108);
     }
 
     /**

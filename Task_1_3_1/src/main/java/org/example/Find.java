@@ -1,7 +1,11 @@
 package org.example;
 
 
-import java.io.*;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
@@ -29,10 +33,11 @@ public class Find {
 
     public String open_file(String name) throws IOException {
         String file = "src/test/resources/" + name;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
         String line = reader.readLine();
         StringBuilder text = new StringBuilder();
-        while(line != null) {
+        while (line != null) {
             text.append(line);
             text.append(" ");
             line = reader.readLine();
@@ -74,6 +79,7 @@ public class Find {
      *
      * @return returns the index of the beginning of the substring.
      */
+
      private int find_math(String text, String example) {
         int math = 0;
         for (int i = 0; i < text.length(); i++) {
@@ -101,11 +107,10 @@ public class Find {
      */
     public int find(String name, String example) throws IOException {
         String text = open_file(name);
-        try(FileWriter writer = new FileWriter("src/test/resources/find.txt", false)) {
+        try (FileWriter writer = new FileWriter("src/test/resources/find.txt", false)) {
             writer.write(example);
             writer.flush();
-        }
-        catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
         String ex = open_file("find.txt");
