@@ -157,48 +157,43 @@ public class Calc {
      */
 
     private static double operator(String [] line) {
-        switch (line[0]) {
-            case "+" -> {
-                number = 2;
-                return plus(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
-            }
-            case "-" -> {
-                number = 2;
-                return minus(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
-            }
-            case "*" -> {
-                number = 2;
-                return multiply(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
-            }
-            case "/" -> {
-                number = 2;
-                return divide(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
-            }
-            case "pow" -> {
-                number = 2;
-                return pow(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
-            }
-            case "sin" -> {
-                number = 1;
-                return sin(Double.parseDouble(line[1]));
-            }
-            case "cos" -> {
-                number = 1;
-                return cos(Double.parseDouble(line[1]));
-            }
-            case "log" -> {
-                number = 1;
-                return log(Double.parseDouble(line[1]));
-            }
-            case "sqrt" -> {
-                number = 1;
-                return sqrt(Double.parseDouble(line[1]));
-            }
-            default -> {
-                number = 0;
-                return Double.parseDouble(line[0]);
-            }
+        if (Objects.equals(line[0], "+")) {
+            number = 2;
+            return plus(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
         }
+        if (Objects.equals(line[0], "-")) {
+            number = 2;
+            return minus(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
+        }
+        if (Objects.equals(line[0], "*")) {
+            number = 2;
+            return multiply(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
+        }
+        if (Objects.equals(line[0], "/")) {
+            number = 2;
+            return divide(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
+        }
+        if (Objects.equals(line[0], "pow")) {
+            number = 2;
+            return pow(Double.parseDouble(line[1]), Double.parseDouble(line[2]));
+        }
+        if (Objects.equals(line[0], "sin")) {
+            number = 1;
+            return sin(Double.parseDouble(line[1]));
+        }
+        if (Objects.equals(line[0], "cos")) {
+            number = 1;
+            return cos(Double.parseDouble(line[1]));
+        }
+        if (Objects.equals(line[0], "log")) {
+            number = 1;
+            return log(Double.parseDouble(line[1]));
+        }
+        if (Objects.equals(line[0], "sqrt")) {
+            number = 1;
+            return sqrt(Double.parseDouble(line[1]));
+        }
+        return Double.parseDouble(line[0]);
     }
 
     /**
