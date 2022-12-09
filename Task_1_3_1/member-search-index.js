@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"org.example","c":"Find","l":"Find()","url":"%3Cinit%3E()"},{"p":"org.example","c":"Find","l":"find(String, String)","url":"find(java.lang.String,java.lang.String)"},{"p":"org.example","c":"Find","l":"open_file(String)","url":"open_file(java.lang.String)"}]
