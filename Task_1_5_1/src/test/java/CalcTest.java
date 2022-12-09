@@ -4,7 +4,9 @@ import org.example.Calc;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Calculate test.
+ */
 public class CalcTest {
 
     /**

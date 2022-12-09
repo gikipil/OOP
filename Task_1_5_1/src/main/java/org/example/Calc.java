@@ -16,7 +16,7 @@ public class Calc {
      *A variable that stores the number of operands in action.
      */
 
-    private static int number = 2;
+    static int number = 2;
 
     /**
      * operation minus.
@@ -46,7 +46,7 @@ public class Calc {
     }
 
     /**
-     * operation multiply
+     * operation multiply.
      *
      * @param operand1 first operand.
      *
@@ -71,7 +71,7 @@ public class Calc {
 
     private static double divide(double operand1, double operand2) {
         if (operand2 == 0) {
-            throw new ArithmeticException ("Invalid input");
+            throw new ArithmeticException("Invalid input");
         } else {
             return operand1 / operand2;
         }
@@ -128,7 +128,7 @@ public class Calc {
      */
 
     private static double pow(double operand1, double operand2) {
-        return Math.pow(operand1,operand2);
+        return Math.pow(operand1, operand2);
     }
 
     /**
@@ -156,7 +156,7 @@ public class Calc {
      * @return double value after calculate.
      */
 
-    private static double operator (String [] line) {
+    private static double operator(String [] line) {
         switch (line[0]) {
             case "+" -> {
                 number = 2;
@@ -211,9 +211,9 @@ public class Calc {
      * @return modified array.
      */
 
-    private static String [] change_arr (String [] arr, double value) {
+    private static String [] change_arr(String [] arr, double value) {
         String rep = String.valueOf(value);
-        String [] ans = new String[arr.length- number];
+        String [] ans = new String[arr.length - number];
         arraycopy(arr, 0, ans, 0, 0);
         ans[0] = rep;
         if (ans.length - (1) > 0) {
@@ -230,8 +230,17 @@ public class Calc {
      * @return true or false.
      */
 
-    private static Boolean num (String elem) {
-        return !Objects.equals(elem, "log") && !Objects.equals(elem, "cos") && !Objects.equals(elem, "sin") && !Objects.equals(elem, "sqrt") && !Objects.equals(elem, "pow") && !Objects.equals(elem, "+") && !Objects.equals(elem, "-") && !Objects.equals(elem, "*") && !Objects.equals(elem, "/");
+    private static Boolean num(String elem) {
+        Boolean cond1 = !Objects.equals(elem, "log");
+        Boolean cond2 = !Objects.equals(elem, "cos");
+        Boolean cond3 = !Objects.equals(elem, "sin");
+        Boolean cond4 = !Objects.equals(elem, "sqrt");
+        Boolean cond5 = !Objects.equals(elem, "pow");
+        Boolean cond6 = !Objects.equals(elem, "+");
+        Boolean cond7 = !Objects.equals(elem, "-");
+        Boolean cond8 = !Objects.equals(elem, "*");
+        Boolean cond9 = !Objects.equals(elem, "/");
+        return cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8 && cond9;
     }
 
     /**
@@ -242,8 +251,12 @@ public class Calc {
      * @return true or false.
      */
 
-    private static Boolean one_operand (String elem) {
-        return Objects.equals(elem, "log") || Objects.equals(elem, "cos") || Objects.equals(elem, "sin") || Objects.equals(elem, "sqrt");
+    private static Boolean one_operand(String elem) {
+        Boolean cond1 = Objects.equals(elem, "log");
+        Boolean cond2 = Objects.equals(elem, "cos");
+        Boolean cond3 = Objects.equals(elem, "sin");
+        Boolean cond4 = Objects.equals(elem, "sqrt");
+        return cond1 || cond2 || cond3 || cond4;
     }
 
     /**
@@ -257,7 +270,7 @@ public class Calc {
      * @return an array with a single response element.
      */
 
-    private static String [] calc (String[] line) {
+    private static String [] calc(String[] line) {
         if (num(line[0])) {
             return line;
         }
@@ -274,7 +287,7 @@ public class Calc {
             String[] n = new String[line.length - 1];
             arraycopy(line, 1, n, 0, n.length);
             String[] n3 = calc(n);
-            String[] n2 = new String[n3.length+1];
+            String[] n2 = new String[n3.length + 1];
             arraycopy(line, 0, n2, 0, 1);
             arraycopy(n3, 0, n2, 1, n3.length);
             return calc(n2);
@@ -282,7 +295,7 @@ public class Calc {
             String[] n = new String[line.length - 2];
             arraycopy(line, 2, n, 0, n.length);
             String[] n3 = calc(n);
-            String[] n2 = new String[n3.length+2];
+            String[] n2 = new String[n3.length + 2];
             arraycopy(line, 0, n2, 0, 2);
             arraycopy(n3, 0, n2, 2, n3.length);
             return calc(n2);
