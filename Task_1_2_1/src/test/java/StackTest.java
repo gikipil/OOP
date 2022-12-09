@@ -32,7 +32,7 @@ public class StackTest {
         stack.popStack(1);
         stack.popStack(3);
         assertArrayEquals(stack.show(), new Integer[]{2, 4, 7, 1, 4, 2, 4, 6});
-        assertEquals(stack.count(),8);
+        assertEquals(stack.count(), 8);
     }
 
     /**
