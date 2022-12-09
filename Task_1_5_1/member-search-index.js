@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"org.example","c":"Calc","l":"Calc()","url":"%3Cinit%3E()"},{"p":"org.example","c":"Calc","l":"calculate(String)","url":"calculate(java.lang.String)"}]
