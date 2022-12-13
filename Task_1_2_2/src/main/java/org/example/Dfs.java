@@ -23,7 +23,7 @@ public class Dfs<T> implements Iterator<Tree<T>> {
     private final Stack<Tree<T>> stack;
 
     /**
-     *constructor.
+     *Constructor.
      *
      * @param elem root structure.
      */

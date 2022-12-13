@@ -34,7 +34,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
     private final ArrayList<Tree<T>> children;
 
     /**
-     * number of iterations.
+     * Number of iterations.
      */
 
     private int iterationCount;

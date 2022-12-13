@@ -5,7 +5,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 /**
- * search class in width.
+ * Search class in width.
  */
 public class Bfs<T> implements Iterator<Tree<T>> {
 

@@ -94,7 +94,7 @@ public class TreeTest {
     }
 
     /**
-     * testing iteration BFS.
+     * Testing iteration BFS.
      */
 
     @Test
