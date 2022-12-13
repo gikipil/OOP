@@ -1,7 +1,7 @@
 import org.example.Tree;
-import org.junit.jupiter.api.Assertions;
 import java.util.ArrayList;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -57,7 +57,7 @@ public class TreeTest {
      */
 
     @Test
-    void DfsTest() {
+    void dfsTest() {
         Tree<String> object = new Tree<>("1");
         Tree<String> object2 = object.addChild("2");
         object2.addChild("4");
@@ -98,7 +98,7 @@ public class TreeTest {
      */
 
     @Test
-    void BfsTest() {
+    void bfsTest() {
         Tree<String> object = new Tree<>("1");
         Tree<String> object2 = object.addChild("2");
         object2.addChild("4");
@@ -143,7 +143,7 @@ public class TreeTest {
      */
 
     @Test
-    void StreamTest() {
+    void streamTest() {
         Tree<String> object = new Tree<>("A");
         object.addChild("AA");
         object.addChild("AB");
@@ -157,6 +157,6 @@ public class TreeTest {
         arr.add("AB");
         arr.add("BB");
         arr.add("BA");
-        Assertions.assertEquals(ans,arr);
+        Assertions.assertEquals(ans, arr);
     }
 }
