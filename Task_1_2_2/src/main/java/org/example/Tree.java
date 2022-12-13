@@ -46,7 +46,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
      */
 
     public int getIterationCount() {
-            return root.iterationCount;
+        return root.iterationCount;
     }
 
     /**
@@ -154,10 +154,10 @@ public class Tree<T> implements Iterable<Tree<T>> {
 
     @Override
     public Iterator<Tree<T>> iterator() {
-        if (typeIteration == IteratorTree.BFS) {
-            return new BFS<>(this);
+        if (typeIteration == IteratorTree.DFS) {
+            return new Dfs<>(this);
         } else {
-            return new DFS<>(this);
+            return new Bfs<>(this);
         }
     }
 

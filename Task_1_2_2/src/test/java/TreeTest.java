@@ -1,9 +1,8 @@
 import org.example.Tree;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 
 /**
  * testing class.
@@ -20,7 +19,7 @@ public class TreeTest {
         Tree<String> object = new Tree<>("1");
         Tree<String> object2 = object.addChild("2");
         Tree<String> object3 = object2.addChild("3");
-        String ans = object.getData()+object2.getData()+object3.getData();
+        String ans = object.getData() + object2.getData() + object3.getData();
         Assertions.assertEquals(ans, "123");
         ArrayList<Tree<String>> child1 = object.getChildren();
         ArrayList<Tree<String>> arr1 = new ArrayList<>();
@@ -58,18 +57,19 @@ public class TreeTest {
      */
 
     @Test
-    void DFSTest() {
+    void DfsTest() {
         Tree<String> object = new Tree<>("1");
         Tree<String> object2 = object.addChild("2");
-        Tree<String> object3 = object.addChild("3");
         object2.addChild("4");
-        Tree<String> object5 = object2.addChild("5");
-        Tree<String> object6 = object2.addChild("6");
-        object2.addChild("7");
+        Tree<String> object3 = object.addChild("3");
         object3.addChild("8");
         object3.addChild("9");
+        Tree<String> object5 = object2.addChild("5");
         object5.addChild("10");
+        Tree<String> object6 = object2.addChild("6");
         object6.addChild("11");
+        object2.addChild("7");
+
 
 
         ArrayList<String> ans = new ArrayList<>();
@@ -98,18 +98,22 @@ public class TreeTest {
      */
 
     @Test
-    void BFSTest() {
+    void BfsTest() {
         Tree<String> object = new Tree<>("1");
         Tree<String> object2 = object.addChild("2");
-        Tree<String> object3 = object.addChild("3");
         object2.addChild("4");
-        Tree<String> object5 = object2.addChild("5");
-        Tree<String> object6 = object2.addChild("6");
-        object2.addChild("7");
+        Tree<String> object3 = object.addChild("3");
         object3.addChild("8");
         object3.addChild("9");
+        Tree<String> object5 = object2.addChild("5");
         object5.addChild("10");
+        Tree<String> object6 = object2.addChild("6");
         object6.addChild("11");
+        object2.addChild("7");
+
+
+
+
 
         object.setTypeIteration(Tree.IteratorTree.BFS);
 
@@ -139,7 +143,7 @@ public class TreeTest {
      */
 
     @Test
-    void StreamAPITest() {
+    void StreamTest() {
         Tree<String> object = new Tree<>("A");
         object.addChild("AA");
         object.addChild("AB");

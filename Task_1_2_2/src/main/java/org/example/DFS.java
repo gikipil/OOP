@@ -8,7 +8,7 @@ import java.util.Stack;
  * search class in length.
  * */
 
-public class DFS<T> implements Iterator<Tree<T>> {
+public class Dfs<T> implements Iterator<Tree<T>> {
 
     /**
      * number of iterations.
@@ -17,7 +17,7 @@ public class DFS<T> implements Iterator<Tree<T>> {
     private final int iterationCount;
 
     /**
-     * stack
+     * stack.
      */
 
     private final Stack<Tree<T>> stack;
@@ -28,7 +28,7 @@ public class DFS<T> implements Iterator<Tree<T>> {
      * @param elem root structure.
      */
 
-    public DFS(Tree<T> elem) {
+    public Dfs(Tree<T> elem) {
         iterationCount = elem.getIterationCount();
         stack = new Stack<>();
         stack.push(elem);

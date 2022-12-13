@@ -7,7 +7,7 @@ import java.util.Iterator;
 /**
  * search class in width.
  */
-public class BFS<T> implements Iterator<Tree<T>> {
+public class Bfs<T> implements Iterator<Tree<T>> {
 
     /**
      * number of iterations.
@@ -27,7 +27,7 @@ public class BFS<T> implements Iterator<Tree<T>> {
      * @param elem root structure.
      */
 
-    public BFS(Tree<T> elem) {
+    public Bfs(Tree<T> elem) {
         iterationCount = elem.getIterationCount();
 
         queue = new ArrayList<Tree<T>>();
