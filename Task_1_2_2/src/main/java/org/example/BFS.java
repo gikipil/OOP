@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class Bfs<T> implements Iterator<Tree<T>> {
 
     /**
-     * number of iterations.
+     * Number of iterations.
      */
 
     private final int iterationCount;

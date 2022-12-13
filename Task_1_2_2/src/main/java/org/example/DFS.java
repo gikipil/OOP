@@ -17,7 +17,7 @@ public class Dfs<T> implements Iterator<Tree<T>> {
     private final int iterationCount;
 
     /**
-     * stack.
+     * Stack.
      */
 
     private final Stack<Tree<T>> stack;
