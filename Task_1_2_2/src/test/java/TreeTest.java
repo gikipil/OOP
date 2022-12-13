@@ -1,6 +1,6 @@
-import org.example.Tree;
 import java.util.ArrayList;
 import java.util.stream.Stream;
+import org.example.Tree;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
