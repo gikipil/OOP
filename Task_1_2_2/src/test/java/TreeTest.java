@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import org.example.Bfs;
 import org.example.Dfs;
 import org.example.Tree;
 import org.junit.jupiter.api.Assertions;
@@ -167,7 +168,7 @@ public class TreeTest {
      */
 
     @Test
-    void iterRemoveTest() {
+    void iterDfsRemoveTest() {
         Tree<String> object = new Tree<>("1");
         Tree<String> object2 = object.addChild("2");
         object2.addChild("4");
@@ -182,6 +183,61 @@ public class TreeTest {
 
 
         Dfs<String> j = (Dfs<String>) object.iterator();
+        while (j.hasNext()) {
+            String t = j.next().getData();
+            if (t.equals("9")) {
+                j.remove();
+            }
+        }
+
+        Tree<String> ans = new Tree<>("1");
+        Tree<String> ans2 = ans.addChild("2");
+        ans2.addChild("4");
+        Tree<String> ans3 = ans.addChild("3");
+        ans3.addChild("8");
+        Tree<String> rans = ans3.addChild("9");
+        Tree<String> ans5 = ans2.addChild("5");
+        rans.deleteChild();
+        ans5.addChild("10");
+        Tree<String> ans6 = ans2.addChild("6");
+        ans6.addChild("11");
+        ans2.addChild("7");
+
+        List<String> arr1 = new ArrayList<>();
+        for (Tree<String> i : object) {
+            arr1.add(i.getData());
+        }
+        List<String> arr2 = new ArrayList<>();
+        for (Tree<String> i : object) {
+            arr2.add(i.getData());
+        }
+
+
+
+        Assertions.assertEquals(arr1, arr2);
+    }
+
+    /**
+     * iter remove.
+     */
+
+    @Test
+    void iterBfsRemoveTest() {
+        Tree<String> object = new Tree<>("1");
+        Tree<String> object2 = object.addChild("2");
+        object2.addChild("4");
+        Tree<String> object3 = object.addChild("3");
+        object3.addChild("8");
+        object3.addChild("9");
+        Tree<String> object5 = object2.addChild("5");
+        object5.addChild("10");
+        Tree<String> object6 = object2.addChild("6");
+        object6.addChild("11");
+        object2.addChild("7");
+
+        object.setTypeIteration(Tree.IteratorTree.BFS);
+
+        Bfs<String> j = (Bfs<String>) object.iterator();
         while (j.hasNext()) {
             String t = j.next().getData();
             if (t.equals("9")) {
