@@ -22,6 +22,13 @@ public class Dfs<T> implements Iterator<Tree<T>> {
 
     private final Stack<Tree<T>> stack;
 
+
+    /**
+     * temp.
+     */
+
+    Tree<T> temp;
+
     /**
      *Constructor.
      *
@@ -53,7 +60,7 @@ public class Dfs<T> implements Iterator<Tree<T>> {
 
     @Override
     public Tree<T> next() {
-        Tree<T> temp = stack.pop();
+        temp = stack.pop();
 
         if (iterationCount != temp.getIterationCount()) {
             throw new ConcurrentModificationException();
@@ -62,4 +69,22 @@ public class Dfs<T> implements Iterator<Tree<T>> {
         stack.addAll(temp.getChildren());
         return temp;
     }
+    /**
+     * method remove.
+     */
+
+    @Override
+    public void remove() {
+        if (iterationCount != temp.getIterationCount()) {
+            throw new ConcurrentModificationException();
+        }
+
+        try {
+            temp.remove();
+
+        } catch (IndexOutOfBoundsException ex) {
+            throw new ConcurrentModificationException();
+        }
+    }
+
 }

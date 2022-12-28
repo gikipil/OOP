@@ -3,6 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Search class in width.
@@ -19,7 +20,13 @@ public class Bfs<T> implements Iterator<Tree<T>> {
      * queue array.
      */
 
-    private final ArrayList<Tree<T>> queue;
+    private final List<Tree<T>> queue;
+
+    /**
+     * temp.
+     */
+
+    Tree<T> temp;
 
     /**
      *constructor.
@@ -53,7 +60,7 @@ public class Bfs<T> implements Iterator<Tree<T>> {
 
     @Override
     public Tree<T> next() {
-        Tree<T> temp = queue.remove(0);
+        temp = queue.remove(0);
 
         if (iterationCount != temp.getIterationCount()) {
             throw new ConcurrentModificationException();
@@ -61,5 +68,22 @@ public class Bfs<T> implements Iterator<Tree<T>> {
 
         queue.addAll(temp.getChildren());
         return temp;
+    }
+
+    /**
+     * method remove.
+     */
+
+    @Override
+    public void remove() {
+        if (iterationCount != temp.getIterationCount()) {
+            throw new ConcurrentModificationException();
+        }
+
+        try {
+            temp.remove();
+        } catch (IndexOutOfBoundsException ex) {
+            throw new ConcurrentModificationException();
+        }
     }
 }

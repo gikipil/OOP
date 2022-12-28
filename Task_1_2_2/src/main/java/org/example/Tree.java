@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * tree class.
@@ -31,7 +32,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
      * array of child structures.
      */
 
-    private final ArrayList<Tree<T>> children;
+    private final List<Tree<T>> children;
 
     /**
      * Number of iterations.
@@ -49,6 +50,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
         return root.iterationCount;
     }
 
+
     /**
      * getter data.
      *
@@ -65,7 +67,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
      * @return child array.
      */
 
-    public ArrayList<Tree<T>> getChildren() {
+    public List<Tree<T>> getChildren() {
         return children;
     }
 
@@ -122,6 +124,24 @@ public class Tree<T> implements Iterable<Tree<T>> {
         parent.children.addAll(children);
 
         return data;
+    }
+
+    /**
+     * remove.
+     */
+
+    public void remove() {
+        if (parent == null) {
+            throw new IllegalStateException();
+        }
+
+        this.parent.children.remove(this);
+
+        for (Tree<T> i : children) {
+            i.parent = this.parent;
+        }
+
+        parent.children.addAll(children);
     }
 
     /**
