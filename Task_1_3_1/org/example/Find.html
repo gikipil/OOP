@@ -178,7 +178,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#find(java.lang.String,java.lang.String)">find</a></span>&#8203;(java.lang.String&nbsp;name,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#find(java.io.InputStream,java.lang.String)">find</a></span>&#8203;(java.io.InputStream&nbsp;input,
     java.lang.String&nbsp;example)</code></th>
 <td class="colLast">
 <div class="block">Find function.</div>
@@ -186,7 +186,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#open_file(java.lang.String)">open_file</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#openFile(java.io.InputStream)">openFile</a></span>&#8203;(java.io.InputStream&nbsp;input)</code></th>
 <td class="colLast">
 <div class="block">function to convert a file.</div>
 </td>
@@ -234,44 +234,48 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="open_file(java.lang.String)">
+<a id="openFile(java.io.InputStream)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>open_file</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;open_file&#8203;(java.lang.String&nbsp;name)
-                           throws java.io.IOException</pre>
+<h4>openFile</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;openFile&#8203;(java.io.InputStream&nbsp;input)
+                          throws java.io.IOException,
+                                 java.lang.ClassNotFoundException</pre>
 <div class="block">function to convert a file.
  in the desired encoding to a string.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>name</code> - name of file.</dd>
+<dd><code>input</code> - name of file.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>String search text.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
+<dd><code>java.lang.ClassNotFoundException</code></dd>
 </dl>
 </li>
 </ul>
-<a id="find(java.lang.String,java.lang.String)">
+<a id="find(java.io.InputStream,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>find</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;find&#8203;(java.lang.String&nbsp;name,
+<pre class="methodSignature">public&nbsp;int&nbsp;find&#8203;(java.io.InputStream&nbsp;input,
                 java.lang.String&nbsp;example)
-         throws java.io.IOException</pre>
+         throws java.io.IOException,
+                java.lang.ClassNotFoundException</pre>
 <div class="block">Find function.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>name</code> - name input file.</dd>
+<dd><code>input</code> - name input file.</dd>
 <dd><code>example</code> - What you need to find.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Start Index.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
+<dd><code>java.lang.ClassNotFoundException</code></dd>
 </dl>
 </li>
 </ul>
