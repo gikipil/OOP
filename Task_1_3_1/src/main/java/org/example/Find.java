@@ -105,7 +105,7 @@ public class Find {
     public int find(InputStream input, String example) throws IOException, ClassNotFoundException {
         String text = openFile(input);
 
-        byte[] bytes = example.getBytes(StandardCharsets.ISO_8859_1);
+        byte[] bytes = example.getBytes(StandardCharsets.UTF_8);
         String ex = new String(bytes, StandardCharsets.UTF_8);
 
         if (Objects.equals(ex, "")) {
