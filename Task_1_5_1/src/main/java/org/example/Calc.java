@@ -206,7 +206,7 @@ public class Calc {
      * @return modified array.
      */
 
-    private static String [] change_arr(String [] arr, double value) {
+    private static String [] changeArr(String [] arr, double value) {
         String rep = String.valueOf(value);
         String [] ans = new String[arr.length - number];
         arraycopy(arr, 0, ans, 0, 0);
@@ -225,16 +225,16 @@ public class Calc {
      * @return true or false.
      */
 
-    private static Boolean num(String elem) {
-        Boolean cond1 = !Objects.equals(elem, "log");
-        Boolean cond2 = !Objects.equals(elem, "cos");
-        Boolean cond3 = !Objects.equals(elem, "sin");
-        Boolean cond4 = !Objects.equals(elem, "sqrt");
-        Boolean cond5 = !Objects.equals(elem, "pow");
-        Boolean cond6 = !Objects.equals(elem, "+");
-        Boolean cond7 = !Objects.equals(elem, "-");
-        Boolean cond8 = !Objects.equals(elem, "*");
-        Boolean cond9 = !Objects.equals(elem, "/");
+    private static boolean num(String elem) {
+        boolean cond1 = !Objects.equals(elem, "log");
+        boolean cond2 = !Objects.equals(elem, "cos");
+        boolean cond3 = !Objects.equals(elem, "sin");
+        boolean cond4 = !Objects.equals(elem, "sqrt");
+        boolean cond5 = !Objects.equals(elem, "pow");
+        boolean cond6 = !Objects.equals(elem, "+");
+        boolean cond7 = !Objects.equals(elem, "-");
+        boolean cond8 = !Objects.equals(elem, "*");
+        boolean cond9 = !Objects.equals(elem, "/");
         return cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8 && cond9;
     }
 
@@ -246,11 +246,11 @@ public class Calc {
      * @return true or false.
      */
 
-    private static Boolean one_operand(String elem) {
-        Boolean cond1 = Objects.equals(elem, "log");
-        Boolean cond2 = Objects.equals(elem, "cos");
-        Boolean cond3 = Objects.equals(elem, "sin");
-        Boolean cond4 = Objects.equals(elem, "sqrt");
+    private static boolean oneOperand(String elem) {
+        boolean cond1 = Objects.equals(elem, "log");
+        boolean cond2 = Objects.equals(elem, "cos");
+        boolean cond3 = Objects.equals(elem, "sin");
+        boolean cond4 = Objects.equals(elem, "sqrt");
         return cond1 || cond2 || cond3 || cond4;
     }
 
@@ -269,13 +269,13 @@ public class Calc {
         if (num(line[0])) {
             return line;
         }
-        if (one_operand(line[0])) {
+        if (oneOperand(line[0])) {
             if ((num(line[1]))) {
-                return change_arr(line, operator(line));
+                return changeArr(line, operator(line));
             }
         } else {
             if ((num(line[1])) && (num(line[2]))) {
-                return change_arr(line, operator(line));
+                return changeArr(line, operator(line));
             }
         }
         if (!num(line[1])) {
