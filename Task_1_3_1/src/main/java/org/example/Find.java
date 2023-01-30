@@ -1,11 +1,8 @@
 package org.example;
 
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
@@ -26,15 +23,15 @@ public class Find {
      * function to convert a file.
      * in the desired encoding to a string.
      *
-     * @param name name of file.
+     * @param input name of file.
      *
      * @return String search text.
      */
 
-    public String open_file(String name) throws IOException {
-        String file = "src/test/resources/" + name;
+
+    public String openFile(InputStream input) throws IOException, ClassNotFoundException {
         BufferedReader reader = new BufferedReader(
-                new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+                new InputStreamReader(input, StandardCharsets.UTF_8));
         String line = reader.readLine();
         StringBuilder text = new StringBuilder();
         while (line != null) {
@@ -99,30 +96,22 @@ public class Find {
     /**
      * Find function.
      *
-     * @param name name input file.
+     * @param input name input file.
      *
      * @param example What you need to find.
      *
      * @return Start Index.
      */
-    public int find(String name, String example) throws IOException {
-        String text = open_file(name);
-        try (FileWriter writer = new FileWriter("src/test/resources/find.txt", false)) {
-            writer.write(example);
-            writer.flush();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        String ex = open_file("find.txt");
+    public int find(InputStream input, String example) throws IOException, ClassNotFoundException {
+        String text = openFile(input);
 
+        byte[] bytes = example.getBytes("CP1251");
+        String ex = new String(bytes, StandardCharsets.UTF_8);
 
         if (Objects.equals(ex, "")) {
             return 0;
         }
-        if (Objects.equals(text, "")) {
-            return -1;
-        }
-        if (text.length() < ex.length()) {
+        if ((Objects.equals(text, "")) || text.length() < ex.length()) {
             return -1;
         }
         prefix(ex);

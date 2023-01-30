@@ -1,6 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.io.InputStream;
+
 import org.example.Find;
 import org.junit.jupiter.api.Test;
 
@@ -15,10 +17,11 @@ public class FindTest {
      * checking at the beginning of the file.
      */
     @Test
-    void in_the_startTest() throws IOException {
+    void inTheStartTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
         String find = "aaaa";
-        assertEquals(test.find("1.txt", find), 0);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("1.in");
+        assertEquals(test.find(input, find), 0);
 
     }
 
@@ -27,9 +30,10 @@ public class FindTest {
      */
 
     @Test
-    void emptyTest() throws IOException {
+    void emptyTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
-        assertEquals(test.find("1.txt", "qwerty"), -1);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("1.in");
+        assertEquals(test.find(input, "qwerty"), -1);
     }
 
     /**
@@ -37,9 +41,10 @@ public class FindTest {
      */
 
     @Test
-    void fullTest() throws IOException {
+    void fullTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
-        assertEquals(test.find("2.txt", "abcd"), 0);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("2.txt");
+        assertEquals(test.find(input, "abcd"), 0);
     }
 
     /**
@@ -47,9 +52,10 @@ public class FindTest {
      */
 
     @Test
-    void palindromeTest() throws IOException {
+    void palindromeTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
-        assertEquals(test.find("3.txt", "cba"), 4);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("3.txt");
+        assertEquals(test.find(input, "cba"), 4);
     }
 
     /**
@@ -57,9 +63,10 @@ public class FindTest {
      */
 
     @Test
-    void null_objectTest() throws IOException {
+    void nullObjectTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
-        assertEquals(test.find("1.txt", ""), 0);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("1.in");
+        assertEquals(test.find(input, ""), 0);
     }
 
     /**
@@ -67,9 +74,10 @@ public class FindTest {
      */
 
     @Test
-    void null_inputTest() throws IOException {
+    void nullInputTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
-        assertEquals(test.find("4.txt", "qwerty"), -1);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("4.txt");
+        assertEquals(test.find(input, "qwerty"), -1);
     }
 
     /**
@@ -77,9 +85,10 @@ public class FindTest {
      */
 
     @Test
-    void little_textTest() throws IOException {
+    void littleTextTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
-        assertEquals(test.find("2.txt", "qwerty"), -1);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("2.txt");
+        assertEquals(test.find(input, "qwerty"), -1);
     }
 
     /**
@@ -87,10 +96,11 @@ public class FindTest {
      */
 
     @Test
-    void large_textTest() throws IOException {
+    void largeTextTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
         String find = "В четверть одиннадцатого, наконец, сели в кареты и поехали.";
-        assertEquals(test.find("5.txt", find), 25108);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("5.txt");
+        assertEquals(test.find(input, find), 25108);
     }
 
     /**
@@ -98,10 +108,11 @@ public class FindTest {
      */
 
     @Test
-    void chinaTest() throws IOException {
+    void chinaTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
         String find = "青空";
-        assertEquals(test.find("7.txt", find), 1);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("7.txt");
+        assertEquals(test.find(input, find), 1);
     }
 
     /**
@@ -109,9 +120,11 @@ public class FindTest {
      */
 
     @Test
-    void very_largeTest() throws IOException {
+    void veryLargeTest() throws IOException, ClassNotFoundException {
         Find test = new Find();
-        assertEquals(test.find("8.txt", "Я это знаю, и я это докажу, - сказал Ростов."), 324873);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("8.txt");
+        String ex = "Я это знаю, и я это докажу, - сказал Ростов.";
+        assertEquals(test.find(input, ex), 324873);
     }
 
 
