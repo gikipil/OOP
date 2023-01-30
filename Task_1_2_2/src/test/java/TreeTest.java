@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.stream.Stream;
 import org.example.Bfs;
@@ -270,5 +271,31 @@ public class TreeTest {
 
 
         Assertions.assertEquals(arr1, arr2);
+    }
+
+    /**
+     * ConcurrentModificationException test.
+     */
+
+    @Test
+    void ConcurrentModificationException () {
+        Tree<String> object = new Tree<>("1");
+        Tree<String> object2 = object.addChild("2");
+        object2.addChild("4");
+        Tree<String> object3 = object.addChild("3");
+        object3.addChild("8");
+        object3.addChild("9");
+        Tree<String> object5 = object2.addChild("5");
+        object5.addChild("10");
+        Tree<String> object6 = object2.addChild("6");
+        object6.addChild("11");
+
+        List<String> ans = new ArrayList<>();
+        Assertions.assertThrows(ConcurrentModificationException.class, () -> {
+            for (Tree<String> i : object) {
+                object2.addChild("7");
+                ans.add(i.getData());
+            }
+        });
     }
 }
