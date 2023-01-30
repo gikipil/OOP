@@ -1,16 +1,11 @@
 package org.example;
 
-import org.example.Vert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-/**
- * The structure of the vertex and the length of the incoming edge.
- */
 
 
 /**
@@ -188,7 +183,7 @@ public class Graf<T> {
      */
 
     public  void setVert(T before, T after) {
-        vertList.put(after,vertList.get(before));
+        vertList.put(after, vertList.get(before));
         vertList.remove(before);
         for (Vert<T> i : adjacency.get(vertList.get(after))) {
             i.val = after;
@@ -207,7 +202,7 @@ public class Graf<T> {
         for (T i : v) {
             ans.add(x, new ArrayList<>());
             y = 0;
-            for (T j: v) {
+            for (T j : v) {
                 ans.get(x).add(y, getWeightEdge(i, j));
                 y++;
             }
@@ -228,7 +223,7 @@ public class Graf<T> {
             ans.add(x, new ArrayList<>());
             int y = 0;
             for (T j : v) {
-                for (Vert<T> l: adjacency.get(vertList.get(j))) {
+                for (Vert<T> l : adjacency.get(vertList.get(j))) {
                     if (i == l.val || i == j) {
                         ans.get(x).add(y, l.weight);
                         y++;
@@ -255,7 +250,7 @@ public class Graf<T> {
         for (T i : v) {
             ans.add(x, new ArrayList<>());
             y = 0;
-            for (T j: v) {
+            for (T j : v) {
                 if (getWeightEdge(i, j) != null) {
                     ans.get(x).add(y, j);
                     y++;
@@ -342,7 +337,7 @@ public class Graf<T> {
         dist[s] = 0;
         mark[s] = 1;
         while (contains(mark)) {
-            int u = nextVert(mark,dist);
+            int u = nextVert(mark, dist);
             if (u == -1) {
                 break;
             }
@@ -373,10 +368,10 @@ public class Graf<T> {
         Integer [] data = deikstra(st);
         int len = this.count;
         for (int i = 0; i < len - 1; i++) {
-            for(int j = 0; j < len - i - 1; j++) {
-                if(data[j + 1] < data[j]) {
+            for (int j = 0; j < len - i - 1; j++) {
+                if (data[j + 1] < data[j]) {
                     int swap = data[j];
-                    Collections.swap(list, j, j+1);
+                    Collections.swap(list, j, j + 1);
                     data[j] = data[j + 1];
                     data[j + 1] = swap;
 

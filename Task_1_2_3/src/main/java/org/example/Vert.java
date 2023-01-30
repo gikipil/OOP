@@ -33,6 +33,6 @@ public class Vert<T> {
      */
 
     public String toString() {
-            return this.val + " (" + this.weight + ")";
-        }
+        return this.val + " (" + this.weight + ")";
+    }
 }
