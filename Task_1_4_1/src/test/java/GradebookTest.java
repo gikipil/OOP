@@ -1,22 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.OptionalDouble;
 import org.example.Gradebook;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.OptionalDouble;
+
+
+/**
+ * Gradebook test.
+ */
 
 public class GradebookTest {
 
     @Test
     void removeSemestrTest() {
-        Gradebook obj = new Gradebook("1") ;
+        Gradebook obj = new Gradebook("1");
         obj.addSemestr(1);
         obj.addSemestr(2);
         obj.addDiscipline(2, "OOP");
         obj.addSemestr(3);
         obj.removeSemestr(2);
-        Gradebook obj1 = new Gradebook("1") ;
+        Gradebook obj1 = new Gradebook("1");
         obj1.addSemestr(1);
         obj1.addSemestr(3);
         Assertions.assertEquals(obj1.getTable(), obj.getTable());
@@ -24,16 +29,16 @@ public class GradebookTest {
 
     @Test
     void removeDisciplineTest() {
-        Gradebook obj = new Gradebook("1") ;
+        Gradebook obj = new Gradebook("1");
         obj.addSemestr(1);
         obj.addDiscipline(1, "OOP");
         obj.addDiscipline(1, "Algebra");
         obj.addDiscipline(1, "Osi");
-        obj.removeDiscipline(1,"Algebra");
+        obj.removeDiscipline(1, "Algebra");
         obj.addSemestr(2);
         obj.addDiscipline(2, "OOP");
         obj.addSemestr(3);
-        Gradebook obj1 = new Gradebook("2") ;
+        Gradebook obj1 = new Gradebook("2");
         obj1.addSemestr(1);
         obj1.addDiscipline(1, "OOP");
         obj1.addDiscipline(1, "Osi");
@@ -45,16 +50,16 @@ public class GradebookTest {
 
     @Test
     void getSemestersTest() {
-        Gradebook obj = new Gradebook("1") ;
+        Gradebook obj = new Gradebook("1");
         obj.addSemestr(1);
         obj.addSemestr(2);
         obj.addDiscipline(2, "OOP");
         obj.addSemestr(3);
-        List<Integer> s = obj.getSemesters();
         List<Integer> ans = new ArrayList<>();
         ans.add(1);
         ans.add(2);
         ans.add(3);
+        List<Integer> s = obj.getSemesters();
         Assertions.assertEquals(s, ans);
     }
 
@@ -70,13 +75,13 @@ public class GradebookTest {
         obj.addSemestr(3);
         obj.addDiscipline(3, "Physical");
         obj.addDiscipline(3, "Imperative");
-        List<String> s = obj.getAllDisciplines();
         List<String> ans = new ArrayList<>();
         ans.add("OOP");
         ans.add("Algebra");
         ans.add("Osi");
         ans.add("Physical");
         ans.add("Imperative");
+        List<String> s = obj.getAllDisciplines();
         Assertions.assertEquals(s, ans);
     }
 
@@ -109,7 +114,7 @@ public class GradebookTest {
         obj.addGrade(1, "Algebra", 4);
         obj.addDiscipline(1, "Osi");
         obj.addGrade(1, "Osi", 5);
-        Assertions.assertEquals(obj.getGrade(1,"Osi"), 5);
+        Assertions.assertEquals(obj.getGrade(1, "Osi"), 5);
     }
 
     @Test

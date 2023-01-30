@@ -1,6 +1,11 @@
 package org.example;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.Stack;
 
 /**
  * Gradebook class.
@@ -136,7 +141,7 @@ public class Gradebook {
         Collections.sort(terms);
         for (Integer term : terms) {
             List<String> subjs = this.getDisciplines(term);
-            if(subjs.contains(sub)) {
+            if (subjs.contains(sub)) {
                 lastTerm = term;
             }
         }
@@ -155,9 +160,9 @@ public class Gradebook {
         Collections.sort(terms);
         for (Integer term : terms) {
             List<String> subjs = this.getDisciplines(term);
-            if(subjs.contains(sub)) {
+            if (subjs.contains(sub)) {
                 Stack<Integer> temp = discipline.get(term).get(sub);
-                while(!temp.empty()) {
+                while (!temp.empty()) {
                     Integer gr = temp.pop();
                     tempGrades.add(gr);
                     this.grades.add(gr);
@@ -207,8 +212,8 @@ public class Gradebook {
         float allCount = 0;
         for (String sub : this.getAllDisciplines()) {
             if (this.getLastGrade(sub) == 5) {
-               fiveCount++;
-               allCount++;
+                fiveCount++;
+                allCount++;
             } else {
                 allCount++;
             }
