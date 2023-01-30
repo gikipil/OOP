@@ -2,7 +2,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.example.Find;
 import org.junit.jupiter.api.Test;
 
