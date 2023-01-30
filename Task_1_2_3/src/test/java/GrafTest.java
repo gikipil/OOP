@@ -1,10 +1,13 @@
 import org.example.Graf;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
+
+/**
+ * GrafTest.
+ */
 
 public class GrafTest {
 
@@ -189,7 +192,6 @@ public class GrafTest {
         obj.addEdge(3, 4, 11);
         obj.addEdge(4, 5, 6);
         obj.addEdge(5, 6, 9);
-        Integer [] ans = obj.deikstra(1);
         Integer [] act = new Integer[6];
         act[0] = 0;
         act[1] = 7;
@@ -197,6 +199,7 @@ public class GrafTest {
         act[3] = 20;
         act[4] = 26;
         act[5] = 11;
+        Integer [] ans = obj.deikstra(1);
         Assertions.assertArrayEquals(ans, act);
     }
 
@@ -222,7 +225,6 @@ public class GrafTest {
         obj.addEdge(3, 4, 11);
         obj.addEdge(4, 5, 8);
         obj.addEdge(5, 6, 9);
-        List<Integer> ans = obj.sortVert(1);
         List<Integer> act = new ArrayList<>();
         act.add(1);
         act.add(2);
@@ -230,6 +232,7 @@ public class GrafTest {
         act.add(4);
         act.add(3);
         act.add(5);
+        List<Integer> ans = obj.sortVert(1);
         Assertions.assertEquals(ans, act);
     }
 

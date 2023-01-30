@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Vert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,17 +12,6 @@ import java.util.Objects;
  * The structure of the vertex and the length of the incoming edge.
  */
 
-class vert<T> {
-    T val;
-    Integer weight;
-    public vert(T val, Integer weight) {
-        this.val = val;
-        this.weight = weight;
-    }
-    public String toString() {
-        return this.val + " (" + this.weight + ")";
-    }
-}
 
 /**
  * Graph class.
@@ -45,7 +35,7 @@ public class Graf<T> {
      * The adjacency list.
      */
 
-    List<ArrayList<vert<T>>> adjacency = new ArrayList<ArrayList<vert<T>>>();
+    List<ArrayList<Vert<T>>> adjacency = new ArrayList<ArrayList<Vert<T>>>();
 
     /**
      * Method of adding a vertex.
@@ -70,7 +60,7 @@ public class Graf<T> {
      */
 
     public void addEdge(T from, T to, Integer weight) {
-        vert<T> temp = new vert<>(to, weight);
+        Vert<T> temp = new Vert<>(to, weight);
         adjacency.get(vertList.get(from)).add(temp);
     }
 
@@ -82,7 +72,7 @@ public class Graf<T> {
 
     public void removeVert(T vert) {
         vertList.remove(vert);
-        for (ArrayList<org.example.vert<T>> verts : adjacency) {
+        for (ArrayList<org.example.Vert<T>> verts : adjacency) {
             verts.removeIf(ex -> ex.val == vert);
         }
     }
@@ -109,8 +99,8 @@ public class Graf<T> {
      * @return weight.
      */
 
-    public Integer getWeightEdge(T from, T to){
-        for (vert<T> i : adjacency.get(vertList.get(from))) {
+    public Integer getWeightEdge(T from, T to) {
+        for (Vert<T> i : adjacency.get(vertList.get(from))) {
             if (i.val == to) {
                 return i.weight;
             }
@@ -129,14 +119,14 @@ public class Graf<T> {
      * @return weight.
      */
 
-    public Integer getWeightEdgeForIndex(int from, int to){
+    public Integer getWeightEdgeForIndex(int from, int to) {
         T toVal = null;
         for (Map.Entry<T, Integer> entry : vertList.entrySet()) {
             if (Objects.equals(to, entry.getValue())) {
                 toVal = entry.getKey();
             }
         }
-        for (vert<T> i : adjacency.get(from)) {
+        for (Vert<T> i : adjacency.get(from)) {
             if (i.val == toVal) {
                 return i.weight;
             }
@@ -156,7 +146,7 @@ public class Graf<T> {
      */
 
     public void setWeightEdge(T from, T to, Integer val) {
-        for (vert<T> i : adjacency.get(vertList.get(from))) {
+        for (Vert<T> i : adjacency.get(vertList.get(from))) {
             if (i.val == to) {
                 i.weight = val;
             }
@@ -183,7 +173,7 @@ public class Graf<T> {
 
     public ArrayList<T> getEdges(T from) {
         ArrayList<T> ans = new ArrayList<>();
-        for (vert<T> i : adjacency.get(vertList.get(from))) {
+        for (Vert<T> i : adjacency.get(vertList.get(from))) {
             ans.add(i.val);
         }
         return ans;
@@ -197,10 +187,10 @@ public class Graf<T> {
      * @param after a new vert.
      */
 
-    public  void setVert (T before, T after) {
+    public  void setVert(T before, T after) {
         vertList.put(after,vertList.get(before));
         vertList.remove(before);
-        for (vert<T> i : adjacency.get(vertList.get(after))) {
+        for (Vert<T> i : adjacency.get(vertList.get(after))) {
             i.val = after;
         }
     }
@@ -238,7 +228,7 @@ public class Graf<T> {
             ans.add(x, new ArrayList<>());
             int y = 0;
             for (T j : v) {
-                for (vert<T> l: adjacency.get(vertList.get(j))) {
+                for (Vert<T> l: adjacency.get(vertList.get(j))) {
                     if (i == l.val || i == j) {
                         ans.get(x).add(y, l.weight);
                         y++;
