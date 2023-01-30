@@ -27,12 +27,5 @@ public class Vert<T> {
         this.val = val;
         this.weight = weight;
     }
-
-    /**
-     *toString.
-     */
-
-    public String toString() {
-        return this.val + " (" + this.weight + ")";
-    }
+    
 }
