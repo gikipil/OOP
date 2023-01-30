@@ -278,7 +278,7 @@ public class TreeTest {
      */
 
     @Test
-    void ConcurrentModificationException () {
+    void concurrentModificationException() {
         Tree<String> object = new Tree<>("1");
         Tree<String> object2 = object.addChild("2");
         object2.addChild("4");
