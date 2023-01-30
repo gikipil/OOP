@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 
 public class GradebookTest {
 
@@ -138,7 +139,18 @@ public class GradebookTest {
         obj.addSemestr(3);
         obj.addDiscipline(3, "OOP");
         obj.addGrade(3, "OOP", 4);
-        Assertions.assertEquals(obj.getAverageGrade("OOP"), "3,66667");
+        List<Integer> temp = new ArrayList<>();
+        temp.add(3);
+        temp.add(4);
+        temp.add(4);
+        OptionalDouble average = temp.stream().mapToDouble(a -> a).average();
+        double ans;
+        if (average.isPresent()) {
+            ans = average.getAsDouble();
+        } else {
+            ans = 0.0;
+        }
+        Assertions.assertEquals(obj.getAverageGrade("OOP"), ans);
     }
 
     @Test
@@ -165,7 +177,21 @@ public class GradebookTest {
         obj.addGrade(2, "Algebra", 3);
         obj.addDiscipline(2, "Osi");
         obj.addGrade(2, "Osi", 3);
-        Assertions.assertEquals(obj.getOverallAverage(), "3,83333");
+        List<Integer> temp = new ArrayList<>();
+        temp.add(3);
+        temp.add(4);
+        temp.add(5);
+        temp.add(5);
+        temp.add(3);
+        temp.add(3);
+        OptionalDouble average = temp.stream().mapToDouble(a -> a).average();
+        double ans;
+        if (average.isPresent()) {
+            ans = average.getAsDouble();
+        } else {
+            ans = 0.0;
+        }
+        Assertions.assertEquals(obj.getOverallAverage(), ans);
     }
 
     @Test

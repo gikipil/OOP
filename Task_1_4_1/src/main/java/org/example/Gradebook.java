@@ -1,10 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Gradebook class.
@@ -12,16 +8,10 @@ import java.util.Stack;
 
 public class Gradebook {
     /**
-     * temp sum.
+     * all grades.
      */
 
-    float sum;
-
-    /**
-     * temp count.
-     */
-
-    float c;
+    List<Integer> grades = new ArrayList<>();
 
     /**
      * user ID.
@@ -157,7 +147,8 @@ public class Gradebook {
      * Find out the average score in the discipline.
      */
 
-    public String getAverageGrade(String sub) {
+    public Double getAverageGrade(String sub) {
+        List<Integer> tempGrades = new ArrayList<>();
         float sum = 0;
         float c = 0;
         ArrayList<Integer> terms = this.getSemesters();
@@ -167,14 +158,14 @@ public class Gradebook {
             if(subjs.contains(sub)) {
                 Stack<Integer> temp = discipline.get(term).get(sub);
                 while(!temp.empty()) {
-                    sum = sum + temp.pop();
-                    c++;
+                    Integer gr = temp.pop();
+                    tempGrades.add(gr);
+                    this.grades.add(gr);
                 }
             }
         }
-        this.sum = sum;
-        this.c = c;
-        return String.format("%.5f", sum / c);
+        OptionalDouble average = tempGrades.stream().mapToDouble(a -> a).average();
+        return average.isPresent() ? average.getAsDouble() : 0;
     }
 
     /**
@@ -197,15 +188,14 @@ public class Gradebook {
      * overall average score.
      */
 
-    public String getOverallAverage() {
+    public Double getOverallAverage() {
         float c = 0;
         float sum = 0;
         for (String sub : this.getAllDisciplines()) {
             this.getAverageGrade(sub);
-            c = c + this.c;
-            sum = sum + this.sum;
         }
-        return String.format("%.5f", sum / c);
+        OptionalDouble average = this.grades.stream().mapToDouble(a -> a).average();
+        return average.isPresent() ? average.getAsDouble() : 0;
     }
 
     /**
