@@ -1,11 +1,11 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.OptionalDouble;
-import java.util.Stack;
+
 
 /**
  * Gradebook class.
@@ -28,7 +28,7 @@ public class Gradebook {
      *discipline and appropriate assessment of term.
      */
 
-    HashMap<Integer, HashMap<String, Stack<Integer>>> discipline = new HashMap<>();
+    HashMap<Integer, HashMap<String, Integer>> discipline = new HashMap<>();
 
     /**
      * Qualification work.
@@ -66,8 +66,8 @@ public class Gradebook {
      * The method of adding discipline.
      */
 
-    public void addDiscipline(Integer term, String sub) {
-        discipline.get(term).put(sub, new Stack<>());
+    public void addDiscipline(Integer term, String sub, Integer grade) {
+        discipline.get(term).put(sub, grade);
     }
 
     /**
@@ -76,15 +76,6 @@ public class Gradebook {
 
     public void removeDiscipline(Integer term, String sub) {
         discipline.get(term).remove(sub);
-    }
-
-    /**
-     * The method of adding an estimate.
-     *
-     */
-
-    public void addGrade(Integer term, String sub, Integer grade) {
-        discipline.get(term).get(sub).push(grade);
     }
 
     /**
@@ -102,15 +93,7 @@ public class Gradebook {
      */
 
     public List<String> getAllDisciplines() {
-        List<String> ans = new ArrayList<>();
-        for (Integer term : this.getSemesters()) {
-            for (String sub : this.getDisciplines(term)) {
-                if (!ans.contains(sub)) {
-                    ans.add(sub);
-                }
-            }
-        }
-        return ans;
+        return this.getSemesters().stream().flatMap(a -> getDisciplines(a).stream()).distinct().toList();
     }
 
     /**
@@ -128,7 +111,7 @@ public class Gradebook {
      */
 
     public Integer getGrade(Integer term, String sub) {
-        return discipline.get(term).get(sub).peek();
+        return discipline.get(term).get(sub);
     }
 
     /**
@@ -137,15 +120,8 @@ public class Gradebook {
 
     public Integer getLastGrade(String sub) {
         Integer lastTerm = 0;
-        ArrayList<Integer> terms = this.getSemesters();
-        Collections.sort(terms);
-        for (Integer term : terms) {
-            List<String> subjs = this.getDisciplines(term);
-            if (subjs.contains(sub)) {
-                lastTerm = term;
-            }
-        }
-        return discipline.get(lastTerm).get(sub).peek();
+        lastTerm = this.getSemesters().stream().sorted().reduce((a, b) -> b).orElse(null);
+        return discipline.get(lastTerm).get(sub);
     }
 
     /**
@@ -153,25 +129,12 @@ public class Gradebook {
      */
 
     public Double getAverageGrade(String sub) {
-        List<Integer> tempGrades = new ArrayList<>();
-        float sum = 0;
-        float c = 0;
-        ArrayList<Integer> terms = this.getSemesters();
-        Collections.sort(terms);
-        for (Integer term : terms) {
-            List<String> subjs = this.getDisciplines(term);
-            if (subjs.contains(sub)) {
-                Stack<Integer> temp = discipline.get(term).get(sub);
-                while (!temp.empty()) {
-                    Integer gr = temp.pop();
-                    tempGrades.add(gr);
-                    this.grades.add(gr);
-                }
-            }
-        }
-        OptionalDouble average = tempGrades.stream().mapToDouble(a -> a).average();
+        OptionalDouble average = this.getSemesters().stream().map(a -> getGrade(a,sub)).
+                dropWhile(a -> Objects.equals(a, null)).mapToDouble(a -> a).average();
         return average.isPresent() ? average.getAsDouble() : 0;
     }
+
+
 
     /**
      * A setter for qualifying work.
@@ -194,12 +157,9 @@ public class Gradebook {
      */
 
     public Double getOverallAverage() {
-        float c = 0;
-        float sum = 0;
-        for (String sub : this.getAllDisciplines()) {
-            this.getAverageGrade(sub);
-        }
-        OptionalDouble average = this.grades.stream().mapToDouble(a -> a).average();
+        OptionalDouble average = this.getSemesters().stream().flatMap(a -> getAllDisciplines().
+                stream().map(b -> getGrade(a, b)).dropWhile(c -> Objects.equals(c, null))).
+                mapToDouble(a -> a).average();
         return average.isPresent() ? average.getAsDouble() : 0;
     }
 
@@ -269,7 +229,7 @@ public class Gradebook {
      * getter hash table.
      */
 
-    public HashMap<Integer, HashMap<String, Stack<Integer>>> getTable() {
+    public HashMap<Integer, HashMap<String, Integer>> getTable() {
         return this.discipline;
     }
 }
