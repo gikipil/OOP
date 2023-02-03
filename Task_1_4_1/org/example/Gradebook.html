@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -178,50 +178,42 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addDiscipline(java.lang.Integer,java.lang.String)">addDiscipline</a></span>&#8203;(java.lang.Integer&nbsp;term,
-             java.lang.String&nbsp;sub)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addDiscipline(java.lang.Integer,java.lang.String,java.lang.Integer)">addDiscipline</a></span>&#8203;(java.lang.Integer&nbsp;term,
+             java.lang.String&nbsp;sub,
+             java.lang.Integer&nbsp;grade)</code></th>
 <td class="colLast">
 <div class="block">The method of adding discipline.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addGrade(java.lang.Integer,java.lang.String,java.lang.Integer)">addGrade</a></span>&#8203;(java.lang.Integer&nbsp;term,
-        java.lang.String&nbsp;sub,
-        java.lang.Integer&nbsp;grade)</code></th>
-<td class="colLast">
-<div class="block">The method of adding an estimate.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addSemestr(java.lang.Integer)">addSemestr</a></span>&#8203;(java.lang.Integer&nbsp;term)</code></th>
 <td class="colLast">
 <div class="block">A method that add a semester.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAllDisciplines()">getAllDisciplines</a></span>()</code></th>
 <td class="colLast">
 <div class="block">get all disciple.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.lang.Double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAverageGrade(java.lang.String)">getAverageGrade</a></span>&#8203;(java.lang.String&nbsp;sub)</code></th>
 <td class="colLast">
 <div class="block">Find out the average score in the discipline.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;java.lang.String&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDisciplines(java.lang.Integer)">getDisciplines</a></span>&#8203;(java.lang.Integer&nbsp;term)</code></th>
 <td class="colLast">
 <div class="block">Find out what disciplines are available in term.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGrade(java.lang.Integer,java.lang.String)">getGrade</a></span>&#8203;(java.lang.Integer&nbsp;term,
         java.lang.String&nbsp;sub)</code></th>
@@ -229,56 +221,56 @@ extends java.lang.Object</pre>
 <div class="block">Find out the assessment of the discipline.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLastGrade(java.lang.String)">getLastGrade</a></span>&#8203;(java.lang.String&nbsp;sub)</code></th>
 <td class="colLast">
 <div class="block">Find out the latest grade in the discipline.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.Double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOverallAverage()">getOverallAverage</a></span>()</code></th>
 <td class="colLast">
 <div class="block">overall average score.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPossibleOfRedDiploma()">getPossibleOfRedDiploma</a></span>()</code></th>
 <td class="colLast">
 <div class="block">checking the possibility of obtaining a diploma with honors.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPossibleScholarship(java.lang.Integer)">getPossibleScholarship</a></span>&#8203;(java.lang.Integer&nbsp;term)</code></th>
 <td class="colLast">
 <div class="block">checking the possibility of obtaining a scholarship.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getQualificationWork()">getQualificationWork</a></span>()</code></th>
 <td class="colLast">
 <div class="block">A getter for qualifying work.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSemesters()">getSemesters</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Find out what semesters are available.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code>java.util.HashMap&lt;java.lang.Integer,&#8203;java.util.HashMap&lt;java.lang.String,&#8203;java.util.Stack&lt;java.lang.Integer&gt;&gt;&gt;</code></td>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>java.util.HashMap&lt;java.lang.Integer,&#8203;java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Integer&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTable()">getTable</a></span>()</code></th>
 <td class="colLast">
 <div class="block">getter hash table.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeDiscipline(java.lang.Integer,java.lang.String)">removeDiscipline</a></span>&#8203;(java.lang.Integer&nbsp;term,
                 java.lang.String&nbsp;sub)</code></th>
@@ -286,14 +278,14 @@ extends java.lang.Object</pre>
 <div class="block">The method of removing discipline.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeSemestr(java.lang.Integer)">removeSemestr</a></span>&#8203;(java.lang.Integer&nbsp;term)</code></th>
 <td class="colLast">
 <div class="block">A method that remove a semester.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setQualificationWork(int)">setQualificationWork</a></span>&#8203;(int&nbsp;grade)</code></th>
 <td class="colLast">
@@ -368,14 +360,15 @@ extends java.lang.Object</pre>
 <div class="block">A method that remove a semester.</div>
 </li>
 </ul>
-<a id="addDiscipline(java.lang.Integer,java.lang.String)">
+<a id="addDiscipline(java.lang.Integer,java.lang.String,java.lang.Integer)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addDiscipline</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addDiscipline&#8203;(java.lang.Integer&nbsp;term,
-                          java.lang.String&nbsp;sub)</pre>
+                          java.lang.String&nbsp;sub,
+                          java.lang.Integer&nbsp;grade)</pre>
 <div class="block">The method of adding discipline.</div>
 </li>
 </ul>
@@ -388,18 +381,6 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;removeDiscipline&#8203;(java.lang.Integer&nbsp;term,
                              java.lang.String&nbsp;sub)</pre>
 <div class="block">The method of removing discipline.</div>
-</li>
-</ul>
-<a id="addGrade(java.lang.Integer,java.lang.String,java.lang.Integer)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addGrade</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addGrade&#8203;(java.lang.Integer&nbsp;term,
-                     java.lang.String&nbsp;sub,
-                     java.lang.Integer&nbsp;grade)</pre>
-<div class="block">The method of adding an estimate.</div>
 </li>
 </ul>
 <a id="getSemesters()">
@@ -527,7 +508,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getTable</h4>
-<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;java.lang.Integer,&#8203;java.util.HashMap&lt;java.lang.String,&#8203;java.util.Stack&lt;java.lang.Integer&gt;&gt;&gt;&nbsp;getTable()</pre>
+<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;java.lang.Integer,&#8203;java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Integer&gt;&gt;&nbsp;getTable()</pre>
 <div class="block">getter hash table.</div>
 </li>
 </ul>
