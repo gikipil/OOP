@@ -73,7 +73,7 @@ public class GradebookTest {
         obj.addSemestr(2);
         obj.addDiscipline(2, "OOP", 3);
         obj.addSemestr(3);
-        obj.addDiscipline(3, "Physical",2);
+        obj.addDiscipline(3, "Physical", 2);
         obj.addDiscipline(3, "Imperative", 5);
         List<String> ans = new ArrayList<>();
         ans.add("OOP");
@@ -181,7 +181,7 @@ public class GradebookTest {
         } else {
             ans = 0.0;
         }
-         Assertions.assertEquals(obj.getOverallAverage(), ans);
+        Assertions.assertEquals(obj.getOverallAverage(), ans);
     }
 
     @Test

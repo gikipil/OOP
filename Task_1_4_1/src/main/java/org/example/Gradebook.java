@@ -94,7 +94,8 @@ public class Gradebook {
      */
 
     public List<String> getAllDisciplines() {
-        List<String> ans = this.getSemesters().stream().flatMap(a -> getDisciplines(a).stream()).distinct().collect(Collectors.toList());
+        List<String> ans = this.getSemesters().stream().flatMap(a -> getDisciplines(a)
+                .stream()).distinct().collect(Collectors.toList());
         return ans;
     }
 
@@ -131,8 +132,8 @@ public class Gradebook {
      */
 
     public Double getAverageGrade(String sub) {
-        OptionalDouble average = this.getSemesters().stream().map(a -> getGrade(a,sub)).
-                dropWhile(a -> Objects.equals(a, null)).mapToDouble(a -> a).average();
+        OptionalDouble average = this.getSemesters().stream().map(a -> getGrade(a, sub))
+                .dropWhile(a -> Objects.equals(a, null)).mapToDouble(a -> a).average();
         return average.isPresent() ? average.getAsDouble() : 0;
     }
 
@@ -159,9 +160,9 @@ public class Gradebook {
      */
 
     public Double getOverallAverage() {
-        OptionalDouble average = this.getSemesters().stream().flatMap(a -> getAllDisciplines().
-                stream().map(b -> getGrade(a, b)).dropWhile(c -> Objects.equals(c, null))).
-                mapToDouble(a -> a).average();
+        OptionalDouble average = this.getSemesters().stream().flatMap(a -> getAllDisciplines()
+                .stream().map(b -> getGrade(a, b)).dropWhile(c -> Objects.equals(c, null)))
+                .mapToDouble(a -> a).average();
         return average.isPresent() ? average.getAsDouble() : 0;
     }
 
