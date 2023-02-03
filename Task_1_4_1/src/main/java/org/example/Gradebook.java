@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 
 /**
@@ -93,7 +94,8 @@ public class Gradebook {
      */
 
     public List<String> getAllDisciplines() {
-        return this.getSemesters().stream().flatMap(a -> getDisciplines(a).stream()).distinct().toList();
+        List<String> ans = this.getSemesters().stream().flatMap(a -> getDisciplines(a).stream()).distinct().collect(Collectors.toList());
+        return ans;
     }
 
     /**
