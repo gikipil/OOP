@@ -51,8 +51,6 @@ public class AdjMatrix<T> implements GrafType<T> {
     /**
      * inherited method.
      * get  index.
-     *
-     * @param vert
      */
     @Override
     public Integer getIndex(T vert) {

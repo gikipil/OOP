@@ -69,7 +69,7 @@ public class IncMatrix<T> implements GrafType<T> {
 
     @Override
     public Integer getWeightEdgeForIndex(int from, int to) {
-        for(Vert<T> a : data.get(from)) {
+        for (Vert<T> a : data.get(from)) {
             if (vertList.get(a.start) == from && vertList.get(a.val) == to) {
                 return a.weight;
             }

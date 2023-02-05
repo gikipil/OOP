@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 
+/**
+ * Sort class.
+ */
+
 public class Sort<T> {
     /**
      * A method that checks whether an array contains a value.

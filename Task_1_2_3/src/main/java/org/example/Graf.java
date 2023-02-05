@@ -241,12 +241,12 @@ public class Graf<T> {
             ans.data.add(x, new ArrayList<>());
             int y = 0;
             for (Vert<T> j : getAllEdges()) {
-                if(j.start == i) {
+                if (j.start == i) {
                     Vert<T> a = new Vert<>(j.start, j.val, j.weight);
-                    ans.data.get(x).add(y,a);
+                    ans.data.get(x).add(y, a);
                 } else {
                     Vert<T> a = new Vert<>(j.start, j.val, null);
-                    ans.data.get(x).add(y,a);
+                    ans.data.get(x).add(y, a);
                 }
                 y++;
             }

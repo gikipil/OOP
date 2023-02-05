@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-
 import org.example.AdjList;
 import org.example.Graf;
 import org.example.Sort;
