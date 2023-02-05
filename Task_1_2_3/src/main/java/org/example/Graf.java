@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
+import java.util.stream.Collectors;
 
 
 /**
@@ -188,7 +188,7 @@ public class Graf<T> {
      */
 
     public List<Vert<T>> getAllEdges() {
-        return adjacency.stream().flatMap(Collection::stream).toList();
+        return adjacency.stream().flatMap(Collection::stream).collect(Collectors.toList());
     }
 
     /**
