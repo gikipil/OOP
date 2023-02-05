@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.example","l":"Graf"},{"p":"org.example","l":"Vert"}]
+typeSearchIndex = [{"p":"org.example","l":"AdjList"},{"p":"org.example","l":"AdjMatrix"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.example","l":"Graf"},{"p":"org.example","l":"GrafType"},{"p":"org.example","l":"IncMatrix"},{"p":"org.example","l":"Sort"},{"p":"org.example","l":"Vert"}]

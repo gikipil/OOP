@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -191,24 +191,24 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;java.util.ArrayList&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="AdjList.html" title="class in org.example">AdjList</a>&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#adjList()">adjList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">A method that returns an adjacency list.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;java.util.ArrayList&lt;java.lang.Integer&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="AdjMatrix.html" title="class in org.example">AdjMatrix</a>&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#adjMatrix()">adjMatrix</a></span>()</code></th>
 <td class="colLast">
 <div class="block">A method that returns an adjacency matrix.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>java.lang.Integer[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deikstra(T)">deikstra</a></span>&#8203;(<a href="Graf.html" title="type parameter in Graf">T</a>&nbsp;start)</code></th>
+<td class="colFirst"><code>java.util.List&lt;<a href="Vert.html" title="class in org.example">Vert</a>&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAllEdges()">getAllEdges</a></span>()</code></th>
 <td class="colLast">
-<div class="block">A method that finds the minimum path from a given vertex using Dijkstra's algorithm.</div>
+<div class="block">all edges.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -219,7 +219,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdges(T)">getEdges</a></span>&#8203;(<a href="Graf.html" title="type parameter in Graf">T</a>&nbsp;from)</code></th>
 <td class="colLast">
 <div class="block">Method for getting a list of vertices adjacent to a given one.</div>
@@ -242,7 +242,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;java.util.ArrayList&lt;java.lang.Integer&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="IncMatrix.html" title="class in org.example">IncMatrix</a>&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#incMatrix()">incMatrix</a></span>()</code></th>
 <td class="colLast">
 <div class="block">A method that returns the incidence matrix.</div>
@@ -278,13 +278,6 @@ extends java.lang.Object</pre>
              java.lang.Integer&nbsp;val)</code></th>
 <td class="colLast">
 <div class="block">The method of changing the edge weight.</div>
-</td>
-</tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sortVert(T)">sortVert</a></span>&#8203;(<a href="Graf.html" title="type parameter in Graf">T</a>&nbsp;st)</code></th>
-<td class="colLast">
-<div class="block">A method for sorting vertices relative to the minimum path from the specified one.</div>
 </td>
 </tr>
 </table>
@@ -480,7 +473,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getEdges</h4>
-<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&nbsp;getEdges&#8203;(<a href="Graf.html" title="type parameter in Graf">T</a>&nbsp;from)</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&nbsp;getEdges&#8203;(<a href="Graf.html" title="type parameter in Graf">T</a>&nbsp;from)</pre>
 <div class="block">Method for getting a list of vertices adjacent to a given one.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -488,6 +481,16 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of adjacent vertices.</dd>
 </dl>
+</li>
+</ul>
+<a id="getAllEdges()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAllEdges</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Vert.html" title="class in org.example">Vert</a>&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&gt;&nbsp;getAllEdges()</pre>
+<div class="block">all edges.</div>
 </li>
 </ul>
 <a id="setVert(java.lang.Object,java.lang.Object)">
@@ -514,7 +517,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>adjMatrix</h4>
-<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;java.util.ArrayList&lt;java.lang.Integer&gt;&gt;&nbsp;adjMatrix()</pre>
+<pre class="methodSignature">public&nbsp;<a href="AdjMatrix.html" title="class in org.example">AdjMatrix</a>&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&nbsp;adjMatrix()</pre>
 <div class="block">A method that returns an adjacency matrix.</div>
 </li>
 </ul>
@@ -524,54 +527,18 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>incMatrix</h4>
-<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;java.util.ArrayList&lt;java.lang.Integer&gt;&gt;&nbsp;incMatrix()</pre>
+<pre class="methodSignature">public&nbsp;<a href="IncMatrix.html" title="class in org.example">IncMatrix</a>&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&nbsp;incMatrix()</pre>
 <div class="block">A method that returns the incidence matrix.</div>
 </li>
 </ul>
 <a id="adjList()">
 <!--   -->
 </a>
-<ul class="blockList">
-<li class="blockList">
-<h4>adjList</h4>
-<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;java.util.ArrayList&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&gt;&nbsp;adjList()</pre>
-<div class="block">A method that returns an adjacency list.</div>
-</li>
-</ul>
-<a id="deikstra(java.lang.Object)">
-<!--   -->
-</a><a id="deikstra(T)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>deikstra</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Integer[]&nbsp;deikstra&#8203;(<a href="Graf.html" title="type parameter in Graf">T</a>&nbsp;start)</pre>
-<div class="block">A method that finds the minimum path from a given vertex using Dijkstra's algorithm.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>start</code> - start vertex.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>An array with minimal paths.</dd>
-</dl>
-</li>
-</ul>
-<a id="sortVert(java.lang.Object)">
-<!--   -->
-</a><a id="sortVert(T)">
-<!--   -->
-</a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>sortVert</h4>
-<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&nbsp;sortVert&#8203;(<a href="Graf.html" title="type parameter in Graf">T</a>&nbsp;st)</pre>
-<div class="block">A method for sorting vertices relative to the minimum path from the specified one.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>st</code> - start vertex.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>sorted list.</dd>
-</dl>
+<h4>adjList</h4>
+<pre class="methodSignature">public&nbsp;<a href="AdjList.html" title="class in org.example">AdjList</a>&lt;<a href="Graf.html" title="type parameter in Graf">T</a>&gt;&nbsp;adjList()</pre>
+<div class="block">A method that returns an adjacency list.</div>
 </li>
 </ul>
 </li>
