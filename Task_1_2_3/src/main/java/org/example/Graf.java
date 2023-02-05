@@ -1,11 +1,12 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 
 
 /**
@@ -25,6 +26,7 @@ public class Graf<T> {
      */
 
     HashMap<T, Integer> vertList = new HashMap<>();
+
 
     /**
      * The adjacency list.
@@ -55,7 +57,7 @@ public class Graf<T> {
      */
 
     public void addEdge(T from, T to, Integer weight) {
-        Vert<T> temp = new Vert<>(to, weight);
+        Vert<T> temp = new Vert<>(from, to, weight);
         adjacency.get(vertList.get(from)).add(temp);
     }
 
@@ -66,7 +68,14 @@ public class Graf<T> {
      */
 
     public void removeVert(T vert) {
+        int ind = vertList.get(vert);
+        adjacency.remove(ind);
         vertList.remove(vert);
+        for (Map.Entry<T, Integer> entry : vertList.entrySet()) {
+            if (entry.getValue() > ind) {
+                vertList.replace(entry.getKey(), entry.getValue() - 1);
+            }
+        }
         for (ArrayList<org.example.Vert<T>> verts : adjacency) {
             verts.removeIf(ex -> ex.val == vert);
         }
@@ -96,7 +105,7 @@ public class Graf<T> {
 
     public Integer getWeightEdge(T from, T to) {
         for (Vert<T> i : adjacency.get(vertList.get(from))) {
-            if (i.val == to) {
+            if (i.val == to && i.start == from) {
                 return i.weight;
             }
         }
@@ -166,12 +175,20 @@ public class Graf<T> {
      * @return a list of adjacent vertices.
      */
 
-    public ArrayList<T> getEdges(T from) {
-        ArrayList<T> ans = new ArrayList<>();
+    public List<T> getEdges(T from) {
+        List<T> ans = new ArrayList<>();
         for (Vert<T> i : adjacency.get(vertList.get(from))) {
             ans.add(i.val);
         }
         return ans;
+    }
+
+    /**
+     * all edges.
+     */
+
+    public List<Vert<T>> getAllEdges() {
+        return adjacency.stream().flatMap(Collection::stream).toList();
     }
 
     /**
@@ -194,20 +211,21 @@ public class Graf<T> {
      * A method that returns an adjacency matrix.
      */
 
-    public ArrayList<ArrayList<Integer>> adjMatrix() {
+    public AdjMatrix<T> adjMatrix() {
         int x = 0;
         int y = 0;
-        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
-        ArrayList<T> v = this.getAllVert();
+        AdjMatrix<T> ans = new AdjMatrix<>();
+        List<T> v = this.getAllVert();
         for (T i : v) {
-            ans.add(x, new ArrayList<>());
+            ans.data.add(x, new ArrayList<>());
             y = 0;
             for (T j : v) {
-                ans.get(x).add(y, getWeightEdge(i, j));
+                ans.data.get(x).add(y, getWeightEdge(i, j));
                 y++;
             }
             x++;
         }
+        ans.setVertList(vertList);
         return ans;
     }
 
@@ -215,26 +233,26 @@ public class Graf<T> {
      *A method that returns the incidence matrix.
      */
 
-    public ArrayList<ArrayList<Integer>> incMatrix() {
+    public IncMatrix<T> incMatrix() {
         int x = 0;
-        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        IncMatrix<T> ans = new IncMatrix<>();
         ArrayList<T> v = this.getAllVert();
         for (T i : v) {
-            ans.add(x, new ArrayList<>());
+            ans.data.add(x, new ArrayList<>());
             int y = 0;
-            for (T j : v) {
-                for (Vert<T> l : adjacency.get(vertList.get(j))) {
-                    if (i == l.val || i == j) {
-                        ans.get(x).add(y, l.weight);
-                        y++;
-                    } else {
-                        ans.get(x).add(y, null);
-                        y++;
-                    }
+            for (Vert<T> j : getAllEdges()) {
+                if(j.start == i) {
+                    Vert<T> a = new Vert<>(j.start, j.val, j.weight);
+                    ans.data.get(x).add(y,a);
+                } else {
+                    Vert<T> a = new Vert<>(j.start, j.val, null);
+                    ans.data.get(x).add(y,a);
                 }
+                y++;
             }
             x++;
         }
+        ans.setVertList(vertList);
         return ans;
     }
 
@@ -242,145 +260,12 @@ public class Graf<T> {
      * A method that returns an adjacency list.
      */
 
-    public ArrayList<ArrayList<T>> adjList() {
-        int x = 0;
-        int y = 0;
-        ArrayList<ArrayList<T>> ans = new ArrayList<>();
-        ArrayList<T> v = this.getAllVert();
-        for (T i : v) {
-            ans.add(x, new ArrayList<>());
-            y = 0;
-            for (T j : v) {
-                if (getWeightEdge(i, j) != null) {
-                    ans.get(x).add(y, j);
-                    y++;
-                }
-            }
-            x++;
-        }
+    public AdjList<T> adjList() {
+        AdjList<T> ans = new AdjList<>();
+        ans.data = this.adjacency;
+        ans.setVertList(vertList);
         return ans;
     }
 
-    /**
-     * A method that checks whether an array contains a value.
-     *
-     * @param arr the array.
-     * @return true or false.
-     */
-
-    private boolean contains(int[] arr) {
-        for (int element : arr) {
-            if (element == 1) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * A method that finds the minimum incomplete vertex.
-     *
-     * @param arr array of vertices.
-     *
-     * @param mark array with attendance marks.
-     *
-     * @return minimum path value.
-     */
-
-    private Integer min(Integer [] arr, int [] mark) {
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < min && mark[i] == 1) {
-                min = arr[i];
-            }
-        }
-        return min;
-    }
-
-    /**
-     * A method that determines the next vertex.
-     *
-     * @param mark array with attendance marks.
-     *
-     * @param dist array of vertices.
-     *
-     * @return next vertex.
-     */
-
-    private int nextVert(int [] mark, Integer [] dist) {
-        for (int i = 0; i < dist.length; i++) {
-            if (mark[i] == 1 && Objects.equals(dist[i], min(dist, mark))) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * A method that finds the minimum path from a given vertex using Dijkstra's algorithm.
-     *
-     * @param start start vertex.
-     *
-     * @return An array with minimal paths.
-     */
-
-    public Integer [] deikstra(T start) {
-        int max = Integer.MAX_VALUE;
-        int len = this.count;
-        Integer [] dist = new Integer[len];
-        int [] mark = new int[len];
-        for (int i = 0; i < len; i++) {
-            dist[i] = max;
-            mark[i] = 0;
-        }
-        int s = vertList.get(start);
-        dist[s] = 0;
-        mark[s] = 1;
-        while (contains(mark)) {
-            int u = nextVert(mark, dist);
-            if (u == -1) {
-                break;
-            }
-            mark[u] = 2;
-            for (int j = 0; j < len; ++j) {
-                Integer tempWeight = this.getWeightEdgeForIndex(u, j);
-                if (tempWeight != null) {
-                    if (dist[u] + tempWeight < dist[j]) {
-                        dist[j] = dist[u] + tempWeight;
-                        mark[j] = 1;
-                    }
-                }
-            }
-        }
-        return dist;
-    }
-
-    /**
-     * A method for sorting vertices relative to the minimum path from the specified one.
-     *
-     * @param st start vertex.
-     *
-     * @return sorted list.
-     */
-
-    public ArrayList<T> sortVert(T st) {
-        ArrayList<T> list = getAllVert();
-        Integer [] data = deikstra(st);
-        int len = this.count;
-        for (int i = 0; i < len - 1; i++) {
-            for (int j = 0; j < len - i - 1; j++) {
-                if (data[j + 1] < data[j]) {
-                    int swap = data[j];
-                    Collections.swap(list, j, j + 1);
-                    data[j] = data[j + 1];
-                    data[j + 1] = swap;
-
-                }
-            }
-        }
-        return list;
-    }
-
-
-
 }
+

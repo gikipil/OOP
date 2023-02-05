@@ -8,6 +8,12 @@ package org.example;
 public class Vert<T> {
 
     /**
+     * start.
+     */
+
+    T start;
+
+    /**
      * Vertex.
      */
 
@@ -23,9 +29,10 @@ public class Vert<T> {
      * Constructor.
      */
 
-    public Vert(T val, Integer weight) {
+    public Vert(T from, T val, Integer weight) {
         this.val = val;
         this.weight = weight;
+        this.start = from;
     }
-    
+
 }

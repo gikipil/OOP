@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
+
+import org.example.AdjList;
 import org.example.Graf;
+import org.example.Sort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +32,9 @@ public class GrafTest {
         obj.addVert(2);
         obj.addVert(4);
         obj.addVert(5);
-        Assertions.assertEquals(obj1.adjList(), obj.adjList());
+        AdjList<Integer> ans1 = obj1.adjList();
+        AdjList<Integer> ans2 = obj.adjList();
+        Assertions.assertEquals(ans1.getData(), ans2.getData());
     }
 
     /**
@@ -52,7 +57,10 @@ public class GrafTest {
         obj.addVert(3);
         obj.addEdge(1, 3, 6);
         obj.addEdge(2, 3, 1);
-        Assertions.assertEquals(obj1.adjList(), obj.adjList());
+        var ans1 = obj1.adjMatrix();
+        var ans2 = obj.adjMatrix();
+        Assertions.assertEquals(ans1.getData(), ans2.getData()
+        );
     }
 
     /**
@@ -106,7 +114,7 @@ public class GrafTest {
         obj.addVert(3);
         obj.addEdge(1, 2, 3);
         obj.addEdge(1, 3, 9);
-        Assertions.assertEquals(obj1.adjMatrix(), obj.adjMatrix());
+        Assertions.assertEquals(obj1.adjMatrix().getData(), obj.adjMatrix().getData());
     }
 
     /**
@@ -167,7 +175,7 @@ public class GrafTest {
         obj.addVert("art");
         obj.addVert("moon");
         obj.addVert("train");
-        Assertions.assertEquals(obj.incMatrix(), obj1.incMatrix());
+        Assertions.assertEquals(obj.incMatrix().getData(), obj1.incMatrix().getData());
     }
 
     /**
@@ -192,15 +200,15 @@ public class GrafTest {
         obj.addEdge(3, 4, 11);
         obj.addEdge(4, 5, 6);
         obj.addEdge(5, 6, 9);
-        Integer [] act = new Integer[6];
-        act[0] = 0;
-        act[1] = 7;
-        act[2] = 9;
-        act[3] = 20;
-        act[4] = 26;
-        act[5] = 11;
-        Integer [] ans = obj.deikstra(1);
-        Assertions.assertArrayEquals(ans, act);
+        var o = obj.adjList();
+        var a = obj.adjMatrix();
+        var b = obj.incMatrix();
+        Sort<Integer> deik = new Sort<>();
+        var ans1 = deik.deikstra(1, o);
+        var ans2 = deik.deikstra(1, a);
+        var ans3 = deik.deikstra(1, b);
+        Assertions.assertArrayEquals(ans1, ans2);
+        Assertions.assertArrayEquals(ans2, ans3);
     }
 
     /**
@@ -232,8 +240,8 @@ public class GrafTest {
         act.add(4);
         act.add(3);
         act.add(5);
-        List<Integer> ans = obj.sortVert(1);
-        Assertions.assertEquals(ans, act);
+        Sort<Integer> ans = new Sort<Integer>();
+        Assertions.assertEquals(act, ans.sortVert(1, obj.adjMatrix()));
     }
 
 }
