@@ -74,9 +74,6 @@ public class Find {
             } else if (math > 0) {
                 math = pi[math];
             }
-            if (ch == 10) {
-                i--;
-            }
             i++;
             ch = reader.read();
         }
