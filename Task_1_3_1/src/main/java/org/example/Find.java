@@ -1,7 +1,11 @@
 package org.example;
 
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
@@ -90,7 +94,7 @@ public class Find {
      */
     public int find(InputStream input, String example) throws IOException, ClassNotFoundException {
 
-        byte[] bytes = example.getBytes("CP1251");
+        byte[] bytes = example.getBytes(StandardCharsets.UTF_8);
         String ex = new String(bytes, StandardCharsets.UTF_8);
 
         if (Objects.equals(ex, "")) {
