@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"org.example","c":"Find","l":"Find()","url":"%3Cinit%3E()"},{"p":"org.example","c":"Find","l":"find(InputStream, String)","url":"find(java.io.InputStream,java.lang.String)"},{"p":"org.example","c":"Find","l":"openFile(InputStream)","url":"openFile(java.io.InputStream)"}]
+memberSearchIndex = [{"p":"org.example","c":"Find","l":"Find()","url":"%3Cinit%3E()"},{"p":"org.example","c":"Find","l":"find(InputStream, String)","url":"find(java.io.InputStream,java.lang.String)"}]
