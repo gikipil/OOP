@@ -80,7 +80,7 @@ public class PrimeNum {
      */
 
     public static boolean  isPrime(int num) {
-        for(int i = 2; i <= sqrt(num); i++) {
+        for (int i = 2; i <= sqrt(num); i++) {
             if (num % i == 0) {
                 return false;
             }
@@ -124,7 +124,8 @@ public class PrimeNum {
             list.add(input.nextInt());
         }
 
-        List<Boolean> ans = list.stream().parallel().map(PrimeNum::isPrime).collect(Collectors.toList());
+        List<Boolean> ans = list.stream().parallel().map(PrimeNum::isPrime)
+                .collect(Collectors.toList());
 
         return ans.contains(false);
 
@@ -172,7 +173,8 @@ public class PrimeNum {
     /*
 
     public  void  file(int num) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("src/test/resources/16.txt", true));
+        BufferedWriter writer = new BufferedWriter(
+        new FileWriter("src/test/resources/16.txt", true));
         writer.write(String.valueOf(1));
         for (int i = 2; i < num; i++) {
             if (isPrime(i)) {
