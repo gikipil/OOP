@@ -3,8 +3,8 @@ import static org.example.PrimeNum.psFind;
 import static org.example.PrimeNum.seqFind;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 import org.example.PrimeNum;
 import org.junit.jupiter.api.Assertions;
@@ -32,9 +32,13 @@ public class PrimeNumTest {
 
     @Test
     void seqFindtest() throws IOException {
-        Scanner input = new Scanner(new File("src/test/resources/1.txt"));
+        InputStream file = getClass().getClassLoader().getResourceAsStream("1.txt");
+        assert file != null;
+        Scanner input = new Scanner(file);
         Assertions.assertTrue(seqFind(input));
-        Scanner input2 = new Scanner(new File("src/test/resources/2.txt"));
+        InputStream file2 = getClass().getClassLoader().getResourceAsStream("2.txt");
+        assert file2 != null;
+        Scanner input2 = new Scanner(file2);
         Assertions.assertFalse(seqFind(input2));
     }
 
@@ -44,9 +48,13 @@ public class PrimeNumTest {
 
     @Test
     void psFindTest() throws IOException {
-        Scanner input = new Scanner(new File("src/test/resources/1.txt"));
+        InputStream file = getClass().getClassLoader().getResourceAsStream("1.txt");
+        assert file != null;
+        Scanner input = new Scanner(file);
         Assertions.assertTrue(psFind(input));
-        Scanner input2 = new Scanner(new File("src/test/resources/2.txt"));
+        InputStream file2 = getClass().getClassLoader().getResourceAsStream("2.txt");
+        assert file2 != null;
+        Scanner input2 = new Scanner(file2);
         Assertions.assertFalse(psFind(input2));
     }
 
@@ -54,13 +62,16 @@ public class PrimeNumTest {
      * thrFind test.
      */
 
-
     @Test
     void thrFindTest() throws IOException, InterruptedException {
         PrimeNum obj1 = new PrimeNum();
-        Scanner input = new Scanner(new File("src/test/resources/1.txt"));
+        InputStream file = getClass().getClassLoader().getResourceAsStream("1.txt");
+        assert file != null;
+        Scanner input = new Scanner(file);
         Assertions.assertTrue(obj1.thrFind(input, 4));
-        Scanner input2 = new Scanner(new File("src/test/resources/2.txt"));
+        InputStream file2 = getClass().getClassLoader().getResourceAsStream("2.txt");
+        assert file2 != null;
+        Scanner input2 = new Scanner(file2);
         PrimeNum obj2 = new PrimeNum();
         Assertions.assertFalse(obj2.thrFind(input2, 8));
     }
@@ -71,9 +82,11 @@ public class PrimeNumTest {
 
     @Test
     void largeSeqTest() throws IOException {
-        Scanner input2 = new Scanner(new File("src/test/resources/12.txt"));
+        InputStream file = getClass().getClassLoader().getResourceAsStream("12.txt");
+        assert file != null;
+        Scanner input = new Scanner(file);
         long start = System.currentTimeMillis();
-        Assertions.assertFalse(seqFind(input2));
+        Assertions.assertFalse(seqFind(input));
         long finish = System.currentTimeMillis();
 
     }
@@ -84,9 +97,11 @@ public class PrimeNumTest {
 
     @Test
     void largePsTest() throws IOException {
-        Scanner input2 = new Scanner(new File("src/test/resources/12.txt"));
+        InputStream file = getClass().getClassLoader().getResourceAsStream("12.txt");
+        assert file != null;
+        Scanner input = new Scanner(file);
         long start = System.currentTimeMillis();
-        Assertions.assertFalse(psFind(input2));
+        Assertions.assertFalse(psFind(input));
         long finish = System.currentTimeMillis();
     }
 
@@ -98,14 +113,18 @@ public class PrimeNumTest {
     void largeThrTest() throws IOException, InterruptedException {
         PrimeNum obj = new PrimeNum();
 
-        Scanner input2 = new Scanner(new File("src/test/resources/12.txt"));
+        InputStream file = getClass().getClassLoader().getResourceAsStream("12.txt");
+        assert file != null;
+        Scanner input = new Scanner(file);
         long start = System.currentTimeMillis();
-        Assertions.assertFalse(obj.thrFind(input2, 4));
+        Assertions.assertFalse(obj.thrFind(input, 4));
         long finish = System.currentTimeMillis();
 
-        Scanner input1 = new Scanner(new File("src/test/resources/12.txt"));
+        InputStream file2 = getClass().getClassLoader().getResourceAsStream("12.txt");
+        assert file2 != null;
+        Scanner input2 = new Scanner(file2);
         start = System.currentTimeMillis();
-        Assertions.assertFalse(obj.thrFind(input1, 8));
+        Assertions.assertFalse(obj.thrFind(input2, 8));
         finish = System.currentTimeMillis();
 
     }

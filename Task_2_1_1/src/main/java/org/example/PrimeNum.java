@@ -1,9 +1,8 @@
 package org.example;
 
+
 import static java.lang.Math.sqrt;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +17,7 @@ import java.util.stream.Collectors;
 
 public class PrimeNum {
 
-    /**
-     * the variable of the presence of a prime number.
-     */
-
-    boolean check = false;
+    private boolean check = false;
 
     /**
      * setter for check.
@@ -49,7 +44,7 @@ public class PrimeNum {
 
         Stack<Integer> num;
 
-        PrimeNum root;
+        private final PrimeNum root;
 
         /**
          * Constructor.
@@ -69,6 +64,7 @@ public class PrimeNum {
                 boolean temp = isPrime(num.pop());
                 if (!temp) {
                     root.setCheck();
+                    break;
                 }
             }
         }
@@ -92,10 +88,7 @@ public class PrimeNum {
      * Sequential verification.
      */
 
-    public static boolean seqFind(Scanner input) throws IOException {
-        if (input == null) {
-            return false;
-        }
+    public static boolean seqFind(Scanner input) throws IOException, IllegalStateException {
 
         while (input.hasNextInt()) {
 
@@ -113,10 +106,7 @@ public class PrimeNum {
      * Parallel stream verification.
      */
 
-    public static boolean psFind(Scanner input) {
-        if (input == null) {
-            return false;
-        }
+    public static boolean psFind(Scanner input) throws IllegalStateException {
 
         List<Integer> list = new ArrayList<Integer>();
 
@@ -135,10 +125,7 @@ public class PrimeNum {
      * Parallel Thread verification.
      */
 
-    public boolean thrFind(Scanner input, int thr) throws InterruptedException {
-        if (input == null) {
-            return false;
-        }
+    public boolean thrFind(Scanner input, int thr) throws InterruptedException, IllegalStateException {
 
         List<Stack<Integer>> queue = new ArrayList<>(thr);
         for (int i = 0; i < thr; i++) {
@@ -170,19 +157,4 @@ public class PrimeNum {
 
     }
 
-    /*
-
-    public  void  file(int num) throws IOException {
-        BufferedWriter writer = new BufferedWriter(
-        new FileWriter("src/test/resources/16.txt", true));
-        writer.write(String.valueOf(1));
-        for (int i = 2; i < num; i++) {
-            if (isPrime(i)) {
-                writer.append(" ");
-                writer.append(String.valueOf(i));
-            }
-        }
-        writer.close();
-    }
-     */
 }
