@@ -263,11 +263,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>seqFind</h4>
 <pre class="methodSignature">public static&nbsp;boolean&nbsp;seqFind&#8203;(java.util.Scanner&nbsp;input)
-                       throws java.io.IOException</pre>
+                       throws java.io.IOException,
+                              java.lang.IllegalStateException</pre>
 <div class="block">Sequential verification.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
+<dd><code>java.lang.IllegalStateException</code></dd>
 </dl>
 </li>
 </ul>
@@ -277,8 +279,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>psFind</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;psFind&#8203;(java.util.Scanner&nbsp;input)</pre>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;psFind&#8203;(java.util.Scanner&nbsp;input)
+                      throws java.lang.IllegalStateException</pre>
 <div class="block">Parallel stream verification.</div>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalStateException</code></dd>
+</dl>
 </li>
 </ul>
 <a id="thrFind(java.util.Scanner,int)">
@@ -289,11 +296,13 @@ extends java.lang.Object</pre>
 <h4>thrFind</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;thrFind&#8203;(java.util.Scanner&nbsp;input,
                        int&nbsp;thr)
-                throws java.lang.InterruptedException</pre>
+                throws java.lang.InterruptedException,
+                       java.lang.IllegalStateException</pre>
 <div class="block">Parallel Thread verification.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.InterruptedException</code></dd>
+<dd><code>java.lang.IllegalStateException</code></dd>
 </dl>
 </li>
 </ul>
