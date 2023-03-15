@@ -123,9 +123,9 @@ public class PrimeNumTest {
         InputStream file2 = getClass().getClassLoader().getResourceAsStream("12.txt");
         assert file2 != null;
         Scanner input2 = new Scanner(file2);
-        start = System.currentTimeMillis();
+        long start1 = System.currentTimeMillis();
         Assertions.assertFalse(obj.thrFind(input2, 8));
-        finish = System.currentTimeMillis();
+        long finish1 = System.currentTimeMillis();
 
     }
 

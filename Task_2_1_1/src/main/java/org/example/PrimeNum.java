@@ -125,8 +125,7 @@ public class PrimeNum {
      * Parallel Thread verification.
      */
 
-    public boolean thrFind(Scanner input, int thr) throws InterruptedException, IllegalStateException {
-
+    public boolean thrFind(Scanner input, int thr) throws InterruptedException {
         List<Stack<Integer>> queue = new ArrayList<>(thr);
         for (int i = 0; i < thr; i++) {
             queue.add(new Stack<>());
