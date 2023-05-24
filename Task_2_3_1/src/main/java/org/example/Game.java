@@ -52,11 +52,11 @@ public class Game extends JPanel implements ActionListener {
     /**
      * x snake coordinate.
      */
-    private int[] PositionX = new int[allSection];
+    private int[] positionX = new int[allSection];
     /**
      * y snake coordinate.
      */
-    private int[] PositionY = new int[allSection];
+    private int[] positionY = new int[allSection];
 
     /**
      * snake length.
@@ -110,8 +110,8 @@ public class Game extends JPanel implements ActionListener {
     public void gameIni() {
         snakeLength = 1;
         for (int i = 0; i < snakeLength; i++) {
-            PositionX[i] = 0 - i * section;
-            PositionY[i] = 0;
+            positionX[i] = 0 - i * section;
+            positionY[i] = 0;
         }
         timer = new Timer(150, this);
         timer.start();
@@ -132,20 +132,20 @@ public class Game extends JPanel implements ActionListener {
      */
     public void move() {
         for (int i = snakeLength; i > 0; i--) {
-            PositionX[i] = PositionX[i - 1];
-            PositionY[i] = PositionY[i - 1];
+            positionX[i] = positionX[i - 1];
+            positionY[i] = positionY[i - 1];
         }
         if (Key.getLeft()) {
-            PositionX[0] -= section;
+            positionX[0] -= section;
         }
         if (Key.getRight()) {
-            PositionX[0] += section;
+            positionX[0] += section;
         }
         if (Key.getUp()) {
-            PositionY[0] -= section;
+            positionY[0] -= section;
         }
         if (Key.getDown()) {
-            PositionY[0] += section;
+            positionY[0] += section;
         }
     }
 
@@ -176,9 +176,9 @@ public class Game extends JPanel implements ActionListener {
         super.paintComponent(g);
         if (!death) {
             g.drawImage(food, foodX, foodY, this);
-            g.drawImage(snake, PositionX[0], PositionY[0], this);
+            g.drawImage(snake, positionX[0], positionY[0], this);
             for (int i = 1; i < snakeLength; i++) {
-                g.drawImage(body, PositionX[i], PositionY[i], this);
+                g.drawImage(body, positionX[i], positionY[i], this);
             }
         } else {
             String gameOver = "Game Over";
@@ -191,7 +191,7 @@ public class Game extends JPanel implements ActionListener {
      * checking for ingestion of food.
      */
     public void checkFood() {
-        if (PositionX[0] == foodX && PositionY[0] == foodY) {
+        if (positionX[0] == foodX && positionY[0] == foodY) {
             snakeLength++;
             createFood();
         }
@@ -202,7 +202,7 @@ public class Game extends JPanel implements ActionListener {
      */
     public void checkDeath() {
         for (int i = snakeLength; i > 0; i--) {
-            if (snakeLength > 4 && PositionX[0] == PositionX[i] && PositionY[0] == PositionY[i]) {
+            if (snakeLength > 4 && positionX[0] == positionX[i] && positionY[0] == positionY[i]) {
                 death = true;
             }
         }
@@ -212,17 +212,17 @@ public class Game extends JPanel implements ActionListener {
      * checking for getting behind the screen.
      */
     public void checkWindow() {
-        if (PositionX[0] == size - section && Key.getRight()) {
-            PositionX[0] = 0 - section;
+        if (positionX[0] == size - section && Key.getRight()) {
+            positionX[0] = 0 - section;
         }
-        if (PositionX[0] == 0 && Key.getLeft()) {
-            PositionX[0] = size;
+        if (positionX[0] == 0 && Key.getLeft()) {
+            positionX[0] = size;
         }
-        if (PositionY[0] == size - section && Key.getDown()) {
-            PositionY[0] = 0 - section;
+        if (positionY[0] == size - section && Key.getDown()) {
+            positionY[0] = 0 - section;
         }
-        if (PositionY[0] == 0 && Key.getUp()) {
-            PositionY[0] = size;
+        if (positionY[0] == 0 && Key.getUp()) {
+            positionY[0] = size;
         }
     }
 }
