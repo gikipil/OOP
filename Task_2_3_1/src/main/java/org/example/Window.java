@@ -1,7 +1,13 @@
 package org.example;
 
-import javax.swing.*;
 
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+
+/**
+ * windows.
+ */
 public class Window extends JFrame {
     /**
      * configuring the graphic window.
