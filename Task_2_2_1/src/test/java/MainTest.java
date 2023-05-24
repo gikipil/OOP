@@ -1,6 +1,9 @@
 import org.example.Main;
 import org.junit.jupiter.api.Test;
 
+/**
+ * test.
+ */
 public class MainTest {
 
     /**
