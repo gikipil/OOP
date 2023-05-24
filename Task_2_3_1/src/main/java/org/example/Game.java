@@ -2,12 +2,12 @@ package org.example;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
@@ -52,11 +52,11 @@ public class Game extends JPanel implements ActionListener {
     /**
      * x snake coordinate.
      */
-    private int[] x = new int[allSection];
+    private int[] xPosition = new int[allSection];
     /**
      * y snake coordinate.
      */
-    private int[] y = new int[allSection];
+    private int[] yPosition = new int[allSection];
 
     /**
      * snake length.
@@ -110,8 +110,8 @@ public class Game extends JPanel implements ActionListener {
     public void gameIni() {
         snakeLength = 1;
         for (int i = 0; i < snakeLength; i++) {
-            x[i] = 0 - i * section;
-            y[i] = 0;
+            xPosition[i] = 0 - i * section;
+            yPosition[i] = 0;
         }
         timer = new Timer(150, this);
         timer.start();
@@ -132,20 +132,20 @@ public class Game extends JPanel implements ActionListener {
      */
     public void move() {
         for (int i = snakeLength; i > 0; i--) {
-            x[i] = x[i - 1];
-            y[i] = y[i - 1];
+            xPosition[i] = xPosition[i - 1];
+            yPosition[i] = yPosition[i - 1];
         }
         if (Key.getLeft()) {
-            x[0] -= section;
+            xPosition[0] -= section;
         }
         if (Key.getRight()) {
-            x[0] += section;
+            xPosition[0] += section;
         }
         if (Key.getUp()) {
-            y[0] -= section;
+            yPosition[0] -= section;
         }
         if (Key.getDown()) {
-            y[0] += section;
+            yPosition[0] += section;
         }
     }
 
@@ -176,9 +176,9 @@ public class Game extends JPanel implements ActionListener {
         super.paintComponent(g);
         if (!death) {
             g.drawImage(food, foodX, foodY, this);
-            g.drawImage(snake, x[0], y[0], this);
+            g.drawImage(snake, xPosition[0], yPosition[0], this);
             for (int i = 1; i < snakeLength; i++) {
-                g.drawImage(body, x[i], y[i], this);
+                g.drawImage(body, xPosition[i], yPosition[i], this);
             }
         } else {
             String gameOver = "Game Over";
@@ -191,7 +191,7 @@ public class Game extends JPanel implements ActionListener {
      * checking for ingestion of food.
      */
     public void checkFood() {
-        if (x[0] == foodX && y[0] == foodY) {
+        if (xPosition[0] == foodX && yPosition[0] == foodY) {
             snakeLength++;
             createFood();
         }
@@ -202,7 +202,7 @@ public class Game extends JPanel implements ActionListener {
      */
     public void checkDeath() {
         for (int i = snakeLength; i > 0; i--) {
-            if (snakeLength > 4 && x[0] == x[i] && y[0] == y[i]) {
+            if (snakeLength > 4 && xPosition[0] == xPosition[i] && yPosition[0] == yPosition[i]) {
                 death = true;
             }
         }
@@ -212,17 +212,17 @@ public class Game extends JPanel implements ActionListener {
      * checking for getting behind the screen.
      */
     public void checkWindow() {
-        if (x[0] == size - section && Key.getRight()) {
-            x[0] = 0 - section;
+        if (xPosition[0] == size - section && Key.getRight()) {
+            xPosition[0] = 0 - section;
         }
-        if (x[0] == 0 && Key.getLeft()) {
-            x[0] = size;
+        if (xPosition[0] == 0 && Key.getLeft()) {
+            xPosition[0] = size;
         }
-        if (y[0] == size - section && Key.getDown()) {
-            y[0] = 0 - section;
+        if (yPosition[0] == size - section && Key.getDown()) {
+            yPosition[0] = 0 - section;
         }
-        if (y[0] == 0 && Key.getUp()) {
-            y[0] = size;
+        if (yPosition[0] == 0 && Key.getUp()) {
+            yPosition[0] = size;
         }
     }
 }
