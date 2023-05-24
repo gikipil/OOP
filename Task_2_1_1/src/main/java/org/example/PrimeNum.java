@@ -31,7 +31,7 @@ public class PrimeNum {
      * root.
      */
 
-    PrimeNum root = this;
+    private PrimeNum root = this;
 
     /**
      * class for thread.
