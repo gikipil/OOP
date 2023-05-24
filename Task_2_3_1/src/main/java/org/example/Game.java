@@ -1,15 +1,19 @@
 package org.example;
 
-import java.util.Random;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
 
+
+/**
+ * game.
+ */
 
 public class Game extends JPanel implements ActionListener {
     /**
@@ -17,7 +21,7 @@ public class Game extends JPanel implements ActionListener {
      */
     private final int size = 640;
     /**
-     * cell size
+     * cell size.
      */
     private final int section = 32;
     /**
@@ -126,10 +130,10 @@ public class Game extends JPanel implements ActionListener {
      * changing the position of the snake.
      * from the direction of movement.
      */
-    public void move(){
-        for (int i = snakeLength; i > 0 ; i--) {
-            x[i] = x[i-1];
-            y[i] = y[i-1];
+    public void move() {
+        for (int i = snakeLength; i > 0; i--) {
+            x[i] = x[i - 1];
+            y[i] = y[i - 1];
         }
         if (Key.getLeft()) {
             x[0] -= section;
@@ -141,7 +145,7 @@ public class Game extends JPanel implements ActionListener {
             y[0] -= section;
         }
         if (Key.getDown()) {
-            y[0] +=section;
+            y[0] += section;
         }
     }
 
@@ -163,6 +167,7 @@ public class Game extends JPanel implements ActionListener {
 
     /**
      * scene renderer.
+     *
      * @param g the <code>Graphics</code> object to protect.
      */
 
@@ -172,13 +177,13 @@ public class Game extends JPanel implements ActionListener {
         if (!death) {
             g.drawImage(food, foodX, foodY, this);
             g.drawImage(snake, x[0], y[0], this);
-            for(int i = 1; i < snakeLength; i++) {
+            for (int i = 1; i < snakeLength; i++) {
                 g.drawImage(body, x[i], y[i], this);
             }
         } else {
             String gameOver = "Game Over";
             g.setColor(Color.RED);
-            g.drawString(gameOver,300, size/2);
+            g.drawString(gameOver, 300, size / 2);
         }
     }
 
@@ -196,7 +201,7 @@ public class Game extends JPanel implements ActionListener {
      * death check.
      */
     public void checkDeath() {
-        for(int i = snakeLength; i > 0; i--) {
+        for (int i = snakeLength; i > 0; i--) {
             if (snakeLength > 4 && x[0] == x[i] && y[0] == y[i]) {
                 death = true;
             }
