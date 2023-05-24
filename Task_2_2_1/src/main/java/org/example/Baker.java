@@ -24,11 +24,14 @@ public class Baker extends Thread {
 
     /**
      * constructor of the baker class.
+     *
      * @param experience baker's work experience.
+     *
      * @param queue queue with incoming orders.
+     *
      * @param storage queue representing pizza storage.
      */
-    Baker (int experience, BlockingQueue<Integer> queue, BlockingQueue<Integer> storage) {
+    Baker(int experience, BlockingQueue<Integer> queue, BlockingQueue<Integer> storage) {
         this.experience = experience;
         this.queue = queue;
         this.storage = storage;
@@ -39,13 +42,13 @@ public class Baker extends Thread {
      */
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             try {
                 Integer order = queue.take();
-                System.out.println("The order number " + order + " has been accepted for execution");
+                System.out.println(order + " has been accepted for execution");
                 Thread.sleep((100 / experience));
                 storage.put(order);
-                System.out.println("The order number " + order + " is ready and waiting for the courier");
+                System.out.println(order + " is ready and waiting for the courier");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

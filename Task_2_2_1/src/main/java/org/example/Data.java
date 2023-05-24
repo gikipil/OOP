@@ -4,6 +4,7 @@ package org.example;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class Data {
 
     /**
      * method for reading the file.
+     *
      * @param file name.
      */
     public static void read(String file) {

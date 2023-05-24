@@ -23,10 +23,12 @@ public class Courier extends Thread {
 
     /**
      * constructor of the courier class.
+     *
      * @param space free space in the courier's trunk.
+     *
      * @param storage queue representing pizza storage.
      */
-    Courier (int space, BlockingQueue<Integer> storage, BlockingQueue<Integer> delivered) {
+    Courier(int space, BlockingQueue<Integer> storage, BlockingQueue<Integer> delivered) {
         this.space = space;
         this.storage = storage;
         this.delivered = delivered;
@@ -37,24 +39,24 @@ public class Courier extends Thread {
      */
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             try {
                 BlockingQueue<Integer> sp = new LinkedBlockingQueue<>(space);
                 Integer order = storage.take();
                 sp.put(order);
-                System.out.println("The order number " + order + " was given to the courier");
+                System.out.println(order + " was given to the courier");
                 while (sp.size() < space) {
                     Integer tempOrder = storage.poll();
                     if (null == tempOrder) {
                         break;
                     }
                     sp.put(tempOrder);
-                    System.out.println("The order number " + tempOrder + " was given to the courier");
+                    System.out.println(tempOrder + " was given to the courier");
                 }
                 while (!sp.isEmpty()) {
                     Thread.sleep(30);
                     Integer tempOrder = sp.take();
-                    System.out.println("The order number " + tempOrder + " was successfully delivered");
+                    System.out.println(tempOrder + " was successfully delivered");
                     delivered.put(tempOrder);
                 }
                 Thread.sleep(300);

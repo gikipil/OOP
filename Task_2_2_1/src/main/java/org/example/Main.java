@@ -21,19 +21,19 @@ public class Main {
         List<Integer> courier = Data.getCouriers();
         Baker[] threadBakers = new Baker[bakers.size()];
         Courier[] threadCourier = new Courier[courier.size()];
-        for (int i = 0;i < bakers.size(); i++) {
+        for (int i = 0; i < bakers.size(); i++) {
             threadBakers[i] = new Baker(bakers.get(i), queue, storage);
             threadBakers[i].start();
         }
-        for (int i = 0;i < courier.size(); i++) {
+        for (int i = 0; i < courier.size(); i++) {
             threadCourier[i] = new Courier(courier.get(i), storage, delivered);
             threadCourier[i].start();
         }
         for (int i = 0; i < 100; i++) {
             queue.put(i);
         }
-        while(true) {
-            if (delivered.size() == 100 ) {
+        while (true) {
+            if (delivered.size() == 100) {
                 break;
             }
         }
