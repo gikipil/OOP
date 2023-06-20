@@ -12,14 +12,14 @@ public class Courier extends Thread {
     /**
      * free space in the courier's trunk.
      */
-    int space;
+    private int space;
 
     /**
      * queue representing pizza storage.
      */
     BlockingQueue<Integer> storage;
 
-    BlockingQueue<Integer> delivered;
+    BlockingQueue<Integer> sp;
 
     /**
      * constructor of the courier class.
@@ -28,10 +28,10 @@ public class Courier extends Thread {
      *
      * @param storage queue representing pizza storage.
      */
-    Courier(int space, BlockingQueue<Integer> storage, BlockingQueue<Integer> delivered) {
+    Courier(int space, BlockingQueue<Integer> storage) {
         this.space = space;
         this.storage = storage;
-        this.delivered = delivered;
+        sp = new LinkedBlockingQueue<>(space);
     }
 
     /**
@@ -39,13 +39,12 @@ public class Courier extends Thread {
      */
     @Override
     public void run() {
-        while (true) {
+        while (!isInterrupted()) {
             try {
-                BlockingQueue<Integer> sp = new LinkedBlockingQueue<>(space);
                 Integer order = storage.take();
                 sp.put(order);
                 System.out.println(order + " was given to the courier");
-                while (sp.size() < space) {
+                while (sp.size() < space && !isInterrupted()) {
                     Integer tempOrder = storage.poll();
                     if (null == tempOrder) {
                         break;
@@ -57,12 +56,20 @@ public class Courier extends Thread {
                     Thread.sleep(30);
                     Integer tempOrder = sp.take();
                     System.out.println(tempOrder + " was successfully delivered");
-                    delivered.put(tempOrder);
                 }
                 Thread.sleep(300);
 
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                    try {
+                        while (!sp.isEmpty()) {
+                            Integer tempOrder = null;
+                            tempOrder = sp.take();
+                            System.out.println(tempOrder + " was successfully delivered");
+                        }
+                    } catch (InterruptedException ex) {
+                        break;
+                    }
+                break;
             }
         }
     }
