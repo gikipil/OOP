@@ -158,20 +158,4 @@ public class PrimeNum {
 
     }
 
-    public static void  file(int num) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("src/test/resources/106.txt", true));
-        writer.write(String.valueOf(1));
-        int k = 0;
-        int i = 2;
-        while (k < num) {
-            if (isPrime(i)) {
-                writer.append(" ");
-                writer.append(String.valueOf(i));
-                k++;
-            }
-            i++;
-        }
-        writer.close();
-    }
-
 }
