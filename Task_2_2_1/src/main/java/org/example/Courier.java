@@ -60,15 +60,15 @@ public class Courier extends Thread {
                 Thread.sleep(300);
 
             } catch (InterruptedException e) {
-                    try {
-                        while (!sp.isEmpty()) {
-                            Integer tempOrder = null;
-                            tempOrder = sp.take();
-                            System.out.println(tempOrder + " was successfully delivered");
-                        }
-                    } catch (InterruptedException ex) {
-                        break;
+                try {
+                    while (!sp.isEmpty()) {
+                        Integer tempOrder = null;
+                        tempOrder = sp.take();
+                        System.out.println(tempOrder + " was successfully delivered");
                     }
+                } catch (InterruptedException ex) {
+                    break;
+                }
                 break;
             }
         }
