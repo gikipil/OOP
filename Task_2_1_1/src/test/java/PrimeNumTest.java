@@ -4,6 +4,7 @@ import static org.example.PrimeNum.seqFind;
 
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.util.Scanner;
 import org.example.PrimeNum;
@@ -118,8 +119,8 @@ public class PrimeNumTest {
      */
 
     @Test
-    void largePsTest(){
-        try(InputStream file = getClass().getClassLoader().getResourceAsStream("12.txt")) {
+    void largePsTest() {
+        try (InputStream file = getClass().getClassLoader().getResourceAsStream("12.txt")) {
             assert file != null;
             Scanner input = new Scanner(file);
             long start = System.currentTimeMillis();
