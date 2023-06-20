@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -7,15 +8,16 @@ import java.util.concurrent.BlockingQueue;
  */
 
 public class Baker extends Thread {
+    Integer order;
     /**
      * the amount of experience used as a coefficient.
      */
-    int experience;
+    private int experience;
 
     /**
      * queue with incoming orders.
      */
-    BlockingQueue<Integer> queue;
+    List<Integer> queue;
 
     /**
      * queue representing pizza storage.
@@ -31,7 +33,7 @@ public class Baker extends Thread {
      *
      * @param storage queue representing pizza storage.
      */
-    Baker(int experience, BlockingQueue<Integer> queue, BlockingQueue<Integer> storage) {
+    Baker(int experience, List<Integer> queue, BlockingQueue<Integer> storage) {
         this.experience = experience;
         this.queue = queue;
         this.storage = storage;
@@ -42,15 +44,27 @@ public class Baker extends Thread {
      */
     @Override
     public void run() {
-        while (true) {
+        while (!isInterrupted()) {
             try {
-                Integer order = queue.take();
+                synchronized (queue) {
+                    while(queue.isEmpty()){
+
+                    }
+                    order = queue.get(0);
+                    queue.remove(0);
+                }
                 System.out.println(order + " has been accepted for execution");
                 Thread.sleep((100 / experience));
                 storage.put(order);
                 System.out.println(order + " is ready and waiting for the courier");
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                try {
+                    storage.put(order);
+                    System.out.println(order + " is ready and waiting for the courier");
+                } catch (InterruptedException ex) {
+                    break;
+                }
+                break;
             }
         }
     }

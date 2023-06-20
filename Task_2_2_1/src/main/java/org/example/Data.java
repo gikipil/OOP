@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,17 +55,20 @@ public class Data {
      * @param file name.
      */
     public static void read(String file) {
-        InputStream input = Data.class.getClassLoader().getResourceAsStream(file);
-        JSONTokener token = new JSONTokener(input);
-        JSONObject json = new JSONObject(token);
-        storageSpace = json.getInt("Storage");
-        JSONArray b = json.getJSONArray("Bakers");
-        for (int i = 0; i < b.length(); i++) {
-            bakers.add(b.getInt(i));
-        }
-        JSONArray c = json.getJSONArray("Couriers");
-        for (int i = 0; i < b.length(); i++) {
-            couriers.add(b.getInt(i));
+        try (InputStream input = Data.class.getClassLoader().getResourceAsStream(file);) {
+            JSONTokener token = new JSONTokener(input);
+            JSONObject json = new JSONObject(token);
+            storageSpace = json.getInt("Storage");
+            JSONArray b = json.getJSONArray("Bakers");
+            for (int i = 0; i < b.length(); i++) {
+                bakers.add(b.getInt(i));
+            }
+            JSONArray c = json.getJSONArray("Couriers");
+            for (int i = 0; i < b.length(); i++) {
+                couriers.add(b.getInt(i));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
