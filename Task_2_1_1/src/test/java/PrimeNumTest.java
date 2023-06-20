@@ -2,9 +2,7 @@ import static org.example.PrimeNum.isPrime;
 import static org.example.PrimeNum.psFind;
 import static org.example.PrimeNum.seqFind;
 
-
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.util.Scanner;
 import org.example.PrimeNum;
