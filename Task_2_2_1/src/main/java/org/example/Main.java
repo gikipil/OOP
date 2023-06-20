@@ -47,8 +47,9 @@ public class Main {
         }
     }
 
-    private static void day(List<Integer> queue, BlockingQueue<Integer> storage, List<Integer> bakers,
-                            List<Integer> courier, Baker[] threadBakers, Courier[] threadCourier) throws InterruptedException {
+    private static void day(List<Integer> queue, BlockingQueue<Integer> storage,
+                            List<Integer> bakers, List<Integer> courier, Baker[] threadBakers,
+                            Courier[] threadCourier) throws InterruptedException {
         for (int i = 0; i < bakers.size(); i++) {
             threadBakers[i] = new Baker(bakers.get(i), queue, storage);
             threadBakers[i].start();

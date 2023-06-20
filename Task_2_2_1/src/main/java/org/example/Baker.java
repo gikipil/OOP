@@ -48,7 +48,7 @@ public class Baker extends Thread {
             try {
                 synchronized (queue) {
                     try {
-                        while (queue.isEmpty()){
+                        while (queue.isEmpty()) {
                             Thread.sleep(10);
                         }
                     } catch (InterruptedException e) {
