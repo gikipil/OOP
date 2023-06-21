@@ -2,12 +2,8 @@ import static org.example.PrimeNum.isPrime;
 import static org.example.PrimeNum.psFind;
 import static org.example.PrimeNum.seqFind;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Stack;
-
 import org.example.PrimeNum;
 import org.example.Read;
 import org.junit.jupiter.api.Assertions;
@@ -67,12 +63,10 @@ public class PrimeNumTest {
 
     @Test
     void largeSeqTest() {
-            List<Integer> list = Read.read("101.txt");
-            long start = System.currentTimeMillis();
-            Assertions.assertFalse(seqFind(list));
-            long finish = System.currentTimeMillis();
-            System.out.println("seq:");
-            System.out.println(finish-start);
+        List<Integer> list = Read.read("101.txt");
+        long start = System.currentTimeMillis();
+        Assertions.assertFalse(seqFind(list));
+        long finish = System.currentTimeMillis();
     }
 
     /**
@@ -85,8 +79,6 @@ public class PrimeNumTest {
         long start = System.currentTimeMillis();
         Assertions.assertFalse(psFind(list));
         long finish = System.currentTimeMillis();
-        System.out.println("ps:");
-        System.out.println(finish-start);
     }
 
     /**
@@ -100,8 +92,6 @@ public class PrimeNumTest {
         long start = System.currentTimeMillis();
         Assertions.assertFalse(obj.thrFind(define2, 50));
         long finish = System.currentTimeMillis();
-        System.out.println("thr:");
-        System.out.println(finish-start);
     }
 
 
