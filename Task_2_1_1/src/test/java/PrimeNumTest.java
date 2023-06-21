@@ -88,7 +88,7 @@ public class PrimeNumTest {
     @Test
     void largeThrTest() throws InterruptedException {
         List<Stack<Integer>> define2 = Read.read("102.txt", 50);
-        PrimeNum obj= new PrimeNum();
+        PrimeNum obj = new PrimeNum();
         long start = System.currentTimeMillis();
         Assertions.assertFalse(obj.thrFind(define2, 50));
         long finish = System.currentTimeMillis();

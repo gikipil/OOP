@@ -7,8 +7,15 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ * read.
+ */
 
 public class Read {
+
+    /**
+     * read for list.
+     */
     public  static List<Integer> read(String name) {
         try (InputStream file = Read.class.getClassLoader().getResourceAsStream(name)) {
             assert file != null;
@@ -22,6 +29,10 @@ public class Read {
             throw new RuntimeException(ex);
         }
     }
+
+    /**
+     * read for thr.
+     */
     public  static List<Stack<Integer>> read(String name, int thr) {
         try (InputStream file = Read.class.getClassLoader().getResourceAsStream(name)) {
             assert file != null;

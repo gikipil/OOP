@@ -2,10 +2,7 @@ package org.example;
 
 import static java.lang.Math.sqrt;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
