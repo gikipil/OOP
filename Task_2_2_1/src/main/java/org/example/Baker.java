@@ -49,12 +49,11 @@ public class Baker extends Thread {
                 synchronized (queue) {
                     try {
                         while (queue.isEmpty()) {
-                            Thread.sleep(10);
+                            queue.wait();
                         }
                     } catch (InterruptedException e) {
                         break;
                     }
-
                     order = queue.get(0);
                     queue.remove(0);
                 }
