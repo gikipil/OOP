@@ -4,8 +4,12 @@ import static org.example.PrimeNum.seqFind;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
+
 import org.example.PrimeNum;
+import org.example.Read;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -31,20 +35,8 @@ public class PrimeNumTest {
 
     @Test
     void seqFindtest() {
-        try (InputStream file = getClass().getClassLoader().getResourceAsStream("1.txt")) {
-            assert file != null;
-            Scanner input = new Scanner(file);
-            Assertions.assertTrue(seqFind(input));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        try (InputStream file2 = getClass().getClassLoader().getResourceAsStream("2.txt")) {
-            assert file2 != null;
-            Scanner input2 = new Scanner(file2);
-            Assertions.assertFalse(seqFind(input2));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+        Assertions.assertTrue(seqFind(Read.read("1.txt")));
+        Assertions.assertFalse(seqFind(Read.read("2.txt")));
     }
 
     /**
@@ -53,20 +45,8 @@ public class PrimeNumTest {
 
     @Test
     void psFindTest() {
-        try (InputStream file = getClass().getClassLoader().getResourceAsStream("1.txt")) {
-            assert file != null;
-            Scanner input = new Scanner(file);
-            Assertions.assertTrue(psFind(input));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        try (InputStream file2 = getClass().getClassLoader().getResourceAsStream("2.txt")) {
-            assert file2 != null;
-            Scanner input2 = new Scanner(file2);
-            Assertions.assertFalse(psFind(input2));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+        Assertions.assertTrue(psFind(Read.read("1.txt")));
+        Assertions.assertFalse(psFind(Read.read("2.txt")));
     }
 
     /**
@@ -75,22 +55,10 @@ public class PrimeNumTest {
 
     @Test
     void thrFindTest() throws InterruptedException {
-        try (InputStream file = getClass().getClassLoader().getResourceAsStream("1.txt")) {
-            PrimeNum obj1 = new PrimeNum();
-            assert file != null;
-            Scanner input = new Scanner(file);
-            Assertions.assertTrue(obj1.thrFind(input, 4));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        try (InputStream file2 = getClass().getClassLoader().getResourceAsStream("2.txt")) {
-            assert file2 != null;
-            Scanner input2 = new Scanner(file2);
-            PrimeNum obj2 = new PrimeNum();
-            Assertions.assertFalse(obj2.thrFind(input2, 8));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+        PrimeNum obj1 = new PrimeNum();
+        Assertions.assertTrue(obj1.thrFind(Read.read("1.txt", 4), 4));
+        PrimeNum obj2 = new PrimeNum();
+        Assertions.assertFalse(obj2.thrFind(Read.read("2.txt", 8), 8));
     }
 
     /**
@@ -99,17 +67,12 @@ public class PrimeNumTest {
 
     @Test
     void largeSeqTest() {
-        try (InputStream file = getClass().getClassLoader().getResourceAsStream("12.txt")) {
-            assert file != null;
-            Scanner input = new Scanner(file);
+            List<Integer> list = Read.read("101.txt");
             long start = System.currentTimeMillis();
-            Assertions.assertFalse(seqFind(input));
+            Assertions.assertFalse(seqFind(list));
             long finish = System.currentTimeMillis();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-
-
+            System.out.println("seq:");
+            System.out.println(finish-start);
     }
 
     /**
@@ -118,16 +81,12 @@ public class PrimeNumTest {
 
     @Test
     void largePsTest() {
-        try (InputStream file = getClass().getClassLoader().getResourceAsStream("12.txt")) {
-            assert file != null;
-            Scanner input = new Scanner(file);
-            long start = System.currentTimeMillis();
-            Assertions.assertFalse(psFind(input));
-            long finish = System.currentTimeMillis();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-
+        List<Integer> list = Read.read("101.txt");
+        long start = System.currentTimeMillis();
+        Assertions.assertFalse(psFind(list));
+        long finish = System.currentTimeMillis();
+        System.out.println("ps:");
+        System.out.println(finish-start);
     }
 
     /**
@@ -136,26 +95,13 @@ public class PrimeNumTest {
 
     @Test
     void largeThrTest() throws InterruptedException {
-        try (InputStream file = getClass().getClassLoader().getResourceAsStream("101.txt")) {
-            PrimeNum obj = new PrimeNum();
-            assert file != null;
-            Scanner input = new Scanner(file);
-            long start = System.currentTimeMillis();
-            Assertions.assertFalse(obj.thrFind(input, 16));
-            long finish = System.currentTimeMillis();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        try (InputStream file2 = getClass().getClassLoader().getResourceAsStream("102.txt"))    {
-            PrimeNum obj = new PrimeNum();
-            assert file2 != null;
-            Scanner input2 = new Scanner(file2);
-            long start1 = System.currentTimeMillis();
-            Assertions.assertFalse(obj.thrFind(input2, 16));
-            long finish1 = System.currentTimeMillis();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+        List<Stack<Integer>> define2 = Read.read("102.txt", 50);
+        PrimeNum obj= new PrimeNum();
+        long start = System.currentTimeMillis();
+        Assertions.assertFalse(obj.thrFind(define2, 50));
+        long finish = System.currentTimeMillis();
+        System.out.println("thr:");
+        System.out.println(finish-start);
     }
 
 

@@ -1,10 +1,7 @@
 package org.example;
 
-
 import static java.lang.Math.sqrt;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,11 +87,12 @@ public class PrimeNum {
      * Sequential verification.
      */
 
-    public static boolean seqFind(Scanner input) throws IOException, IllegalStateException {
+    public static boolean seqFind(List<Integer> list) throws IllegalStateException {
 
-        while (input.hasNextInt()) {
+        while (!list.isEmpty()) {
 
-            int num = input.nextInt();
+            int num =  list.get(0);
+            list.remove(0);
 
             if (!isPrime(num)) {
                 return true;
@@ -108,17 +106,9 @@ public class PrimeNum {
      * Parallel stream verification.
      */
 
-    public static boolean psFind(Scanner input) throws IllegalStateException {
-
-        List<Integer> list = new ArrayList<Integer>();
-
-        while (input.hasNextInt()) {
-            list.add(input.nextInt());
-        }
-
+    public static boolean psFind(List<Integer> list) throws IllegalStateException {
         List<Boolean> ans = list.stream().parallel().map(PrimeNum::isPrime)
                 .collect(Collectors.toList());
-
         return ans.contains(false);
 
     }
@@ -127,26 +117,10 @@ public class PrimeNum {
      * Parallel Thread verification.
      */
 
-    public boolean thrFind(Scanner input, int thr) throws InterruptedException {
-        List<Stack<Integer>> queue = new ArrayList<>(thr);
-        for (int i = 0; i < thr; i++) {
-            queue.add(new Stack<>());
-        }
-
-        int thrQ = 0;
-
-        while (input.hasNextInt()) {
-            if (thrQ < thr) {
-                queue.get(thrQ).push(input.nextInt());
-                thrQ++;
-            } else {
-                thrQ = 0;
-            }
-        }
-
+    public boolean thrFind(List<Stack<Integer>> list, int thr) throws InterruptedException {
         MyThread[] thread = new MyThread[thr];
         for (int i = 0; i < thr; i++) {
-            thread[i] = new MyThread(queue.get(i), root);
+            thread[i] = new MyThread(list.get(i), root);
             thread[i].start();
         }
 
